@@ -1,7 +1,8 @@
 function BurgerMenu({ isVisible }) {
+  console.log(isVisible);
   return (
     <div className="nav__menu menu">
-      {{ isVisible } && (
+      { isVisible  && (
         <ul className="menu__list">
           <li className="menu__item">
             <a href="http://" className="menu__link">
