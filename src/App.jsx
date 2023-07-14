@@ -1,12 +1,12 @@
 import './style.css';
 import { Search } from './components/Search';
-import { BurgerIcon } from './components/BurgerIcon';
 import { Filter } from './components/Filter';
 import { TrackListHeader } from './components/TrackListHeader';
 import { TrackList } from './components/TrackList';
 import { SideBar } from './components/SideBar';
 import { User } from './components/User';
 import { Player } from './components/Player';
+import { BurgerMenu } from './components/BurgerMenu';
 
 function App() {
   return (
@@ -17,8 +17,7 @@ function App() {
             <div className="nav__logo logo">
               <img className="logo__image" src="img/logo.png" alt="logo"></img>
             </div>
-            <BurgerIcon />
-            {/* <BurgerMenu /> */}
+            <BurgerMenu />
           </nav>
           <div className="main__centerblock centerblock">
             <Search />
