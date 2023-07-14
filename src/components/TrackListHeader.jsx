@@ -1,4 +1,3 @@
-import React from 'react';
 function TrackListHeader() {
   return (
     <div className="content__title playlist-title">

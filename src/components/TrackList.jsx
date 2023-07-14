@@ -1,4 +1,3 @@
-import React from 'react';
 function TrackList() {
   return (
     <div className="content__playlist playlist">

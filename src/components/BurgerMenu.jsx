@@ -1,4 +1,3 @@
-import React from 'react';
 function BurgerMenu({ isVisible }) {
   return (
     <div className="nav__menu menu">

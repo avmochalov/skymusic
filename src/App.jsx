@@ -1,8 +1,6 @@
-// import React from 'react';
 import './style.css';
 import { Search } from './components/Search';
 import { BurgerIcon } from './components/BurgerIcon';
-import { BurgerMenu } from './components/BurgerMenu';
 import { Filter } from './components/Filter';
 import { TrackListHeader } from './components/TrackListHeader';
 import { TrackList } from './components/TrackList';
