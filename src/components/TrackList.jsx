@@ -4,7 +4,7 @@ function TrackList() {
   return (
     <div className="content__playlist playlist">
       {tracks.map((track) => (
-        <div className="playlist__item">
+        <div key={track.id} className="playlist__item">
           <div className="playlist__track track">
             <div className="track__title">
               <div className="track__title-image">
