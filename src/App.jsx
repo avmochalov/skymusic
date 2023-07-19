@@ -7,8 +7,15 @@ import { SideBar } from './components/SideBar';
 import { User } from './components/User';
 import { Player } from './components/Player';
 import { BurgerMenu } from './components/BurgerMenu';
+import { useEffect, useState } from 'react';
+import { SideBarPlug } from './components/SideBarPlug';
 
 function App() {
+  const [isLoading, setLoadingStatus] = useState(true);
+  const switchLoading = () => setLoadingStatus(!isLoading);
+  useEffect(() => {
+    setTimeout(switchLoading, 5000);
+  }, []);
   return (
     <div className="wrapper">
       <div className="container">
@@ -30,7 +37,7 @@ function App() {
           </div>
           <div className="main__sidebar sidebar">
             <User />
-            <SideBar />
+            {isLoading ? <SideBarPlug /> : <SideBar />}
           </div>
         </main>
         <div className="bar">
