@@ -9,6 +9,7 @@ import { Player } from './components/Player';
 import { BurgerMenu } from './components/BurgerMenu';
 import { useEffect, useState } from 'react';
 import { SideBarPlug } from './components/SideBarPlug';
+import { TrackListPlug } from './components/TrackListPlug';
 
 function App() {
   const [isLoading, setLoadingStatus] = useState(true);
@@ -32,7 +33,7 @@ function App() {
             <Filter />
             <div className="centerblock__content">
               <TrackListHeader />
-              <TrackList />
+              {isLoading ? <TrackListPlug /> : <TrackList />}
             </div>
           </div>
           <div className="main__sidebar sidebar">
