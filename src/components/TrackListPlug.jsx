@@ -8,7 +8,7 @@ function TrackListPlug() {
           <div className="playlist__track track">
           <img
                 src="img/plug/trackListPlug.svg"
-                alt="day's playlist"
+                alt="plug"
               ></img>
           </div>
         </div>

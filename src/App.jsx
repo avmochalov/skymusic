@@ -10,6 +10,7 @@ import { BurgerMenu } from './components/BurgerMenu';
 import { useEffect, useState } from 'react';
 import { SideBarPlug } from './components/SideBarPlug';
 import { TrackListPlug } from './components/TrackListPlug';
+import { PlayerPlug } from './components/PlayerPlug';
 
 function App() {
   const [isLoading, setLoadingStatus] = useState(true);
@@ -42,7 +43,7 @@ function App() {
           </div>
         </main>
         <div className="bar">
-          <Player />
+           {isLoading ? <PlayerPlug />: <Player />}
         </div>
         <footer className="footer"></footer>
       </div>
