@@ -232,7 +232,7 @@ body {
   border: 1px solid #ffffff;
   border-radius: 60px;
   padding: 6px 20px;
-  display: inline-block;
+  position: relative;
 }
 .filter__button:not(:last-child) {
   margin-right: 10px;
@@ -248,7 +248,9 @@ body {
   gap: 24px;
   padding: 34px;
   overflow: scroll;
-  display: block;
+  position: absolute;
+  top: 50px;
+  left: 90px;
 }
 .filter__menu_item {
   color: #fff;

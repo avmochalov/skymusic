@@ -1,18 +1,15 @@
 import { tracks } from '../data';
-import { useState } from 'react';
 
-function FilterMenu({}) {
-  const [isVisible, setVisible] = useState(false);
-  const toggleVisibility = () => setVisible(!isVisible);
+function AuthorFilterMenu({ toggleAuthorVisibility, isAuthorVisible, setYearVisible, setGenreVisible }) {
   return (
     <>
       <div
         className="filter__button button-author _btn-text"
-        onClick={toggleVisibility}
+        onClick={() => {toggleAuthorVisibility(), setYearVisible(false), setGenreVisible(false)}}
       >
         исполнителю
       </div>
-      {isVisible && (
+      {isAuthorVisible && (
         <div className="filter__menu">
           {tracks.map((track) => (
             <div key={track.id} className="filter__menu_item">
@@ -25,4 +22,4 @@ function FilterMenu({}) {
   );
 }
 
-export { FilterMenu };
+export { AuthorFilterMenu };
