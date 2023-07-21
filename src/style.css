@@ -36,7 +36,7 @@ body {
   width: 100%;
   height: 100%;
   font-family: "StratosSkyeng", sans-serif;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .wrapper {
@@ -55,33 +55,33 @@ body {
 }
 
 ._btn-text:hover {
-  border-color: #D9B6FF;
-  color: #D9B6FF;
+  border-color: #d9b6ff;
+  color: #d9b6ff;
   cursor: pointer;
 }
 
 ._btn-icon:hover svg {
   fill: transparent;
-  stroke: #ACACAC;
+  stroke: #acacac;
   cursor: pointer;
 }
 
 ._btn-text:active {
-  border-color: #AD61FF;
-  color: #AD61FF;
+  border-color: #ad61ff;
+  color: #ad61ff;
   cursor: pointer;
 }
 
 ._btn-icon:active svg {
   fill: transparent;
-  stroke: #FFFFFF;
+  stroke: #ffffff;
   cursor: pointer;
 }
 
 ._btn-icon:active .track-play__like-svg,
 ._btn-icon:active .track-play__dislike-svg {
   fill: #696969;
-  stroke: #FFFFFF;
+  stroke: #ffffff;
   cursor: pointer;
 }
 
@@ -137,7 +137,7 @@ body {
   display: inline-block;
   width: 100%;
   height: 1px;
-  background-color: #D3D3D3;
+  background-color: #d3d3d3;
 }
 
 .menu__list {
@@ -148,7 +148,7 @@ body {
   margin-bottom: 16px;
 }
 .menu__link {
-  color: #FFFFFF;
+  color: #ffffff;
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
@@ -156,7 +156,7 @@ body {
 
 .centerblock__search {
   width: 100%;
-  border-bottom: 1px solid #4E4E4E;
+  border-bottom: 1px solid #4e4e4e;
   margin-bottom: 51px;
   display: flex;
   flex-direction: row;
@@ -175,6 +175,7 @@ body {
   flex-direction: row;
   align-items: center;
   margin-bottom: 51px;
+  position: relative;
 }
 .centerblock__content {
   display: flex;
@@ -185,7 +186,7 @@ body {
   width: 17px;
   height: 17px;
   margin-right: 5px;
-  stroke: #FFFFFF;
+  stroke: #ffffff;
   fill: transparent;
 }
 .search__text {
@@ -197,11 +198,11 @@ body {
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 .search__text::-moz-placeholder {
   background-color: transparent;
-  color: #FFFFFF;
+  color: #ffffff;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -209,7 +210,7 @@ body {
 }
 .search__text::placeholder {
   background-color: transparent;
-  color: #FFFFFF;
+  color: #ffffff;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -228,12 +229,34 @@ body {
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-  border: 1px solid #FFFFFF;
+  border: 1px solid #ffffff;
   border-radius: 60px;
   padding: 6px 20px;
+  display: inline-block;
 }
 .filter__button:not(:last-child) {
   margin-right: 10px;
+}
+.filter__menu {
+  border-radius: 12px;
+  max-width: 250px;
+  max-height: 305px;
+  background: #313131;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  padding: 34px;
+  overflow: scroll;
+  display: block;
+}
+.filter__menu_item {
+  color: #fff;
+  cursor: pointer;
+}
+.filter__menu_item:hover {
+  text-decoration: underline;
+  color: #b672ff;
 }
 
 .content__title {
@@ -314,21 +337,21 @@ body {
   width: 18px;
   height: 17px;
   fill: transparent;
-  stroke: #4E4E4E;
+  stroke: #4e4e4e;
 }
 .track__title-link {
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 .track__title-span {
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-  color: #4E4E4E;
+  color: #4e4e4e;
 }
 .track__author {
   width: 321px;
@@ -340,7 +363,7 @@ body {
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-  color: #FFFFFF;
+  color: #ffffff;
   text-align: left;
 }
 .track__album {
@@ -381,7 +404,7 @@ body {
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-  color: #FFFFFF;
+  color: #ffffff;
   margin-right: 16px;
 }
 .sidebar__avatar {
@@ -433,7 +456,7 @@ body {
 .bar__player-progress {
   width: 100%;
   height: 5px;
-  background: #2E2E2E;
+  background: #2e2e2e;
 }
 .bar__player-block {
   height: 73px;
@@ -477,7 +500,7 @@ body {
 .player__btn-play-svg {
   width: 22px;
   height: 20px;
-  fill: #D9D9D9;
+  fill: #d9d9d9;
 }
 .player__btn-next {
   margin-right: 28px;
@@ -487,7 +510,7 @@ body {
   width: 15px;
   height: 14px;
   fill: inherit;
-  stroke: #D9D9D9;
+  stroke: #d9d9d9;
 }
 .player__btn-repeat {
   margin-right: 24px;
@@ -534,7 +557,7 @@ body {
   width: 18px;
   height: 17px;
   fill: transparent;
-  stroke: #4E4E4E;
+  stroke: #4e4e4e;
 }
 .track-play__author {
   grid-area: author;
@@ -545,7 +568,7 @@ body {
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-  color: #FFFFFF;
+  color: #ffffff;
   white-space: nowrap;
 }
 .track-play__album {
@@ -557,7 +580,7 @@ body {
   font-weight: 400;
   font-size: 13px;
   line-height: 24px;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 .track-play__like-dis {
   display: flex;
