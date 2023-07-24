@@ -7,7 +7,7 @@ function GenreFilterMenu({
   return (
     <>
       <div
-        className="filter__button button-year _btn-text"
+        className={"filter__button button-year _btn-text" +`${isGenreVisible && (' filter__button_clicked')}`}
         onClick={() => {
           toggleGenreVisibility(),
             setAuthorVisible(false),

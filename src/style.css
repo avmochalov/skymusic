@@ -237,6 +237,10 @@ body {
 .filter__button:not(:last-child) {
   margin-right: 10px;
 }
+.filter__button_clicked {
+  border-color: #d9b6ff;
+  color: #d9b6ff;
+}
 .filter__menu {
   border-radius: 12px;
   max-width: 250px;

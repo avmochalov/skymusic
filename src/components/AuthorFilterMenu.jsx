@@ -4,7 +4,7 @@ function AuthorFilterMenu({ toggleAuthorVisibility, isAuthorVisible, setYearVisi
   return (
     <>
       <div
-        className="filter__button button-author _btn-text"
+        className={"filter__button button-author _btn-text"+`${isAuthorVisible && (' filter__button_clicked')}`}
         onClick={() => {toggleAuthorVisibility(), setYearVisible(false), setGenreVisible(false)}}
       >
         исполнителю
