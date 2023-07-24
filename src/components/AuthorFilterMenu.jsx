@@ -1,15 +1,24 @@
 import { tracks } from '../data';
 
-function AuthorFilterMenu({ toggleAuthorVisibility, isAuthorVisible, setYearVisible, setGenreVisible }) {
+function AuthorFilterMenu({ toggleVisibility, whatVisible }) {
   return (
     <>
       <div
-        className={"filter__button button-author _btn-text"+`${isAuthorVisible && (' filter__button_clicked')}`}
-        onClick={() => {toggleAuthorVisibility(), setYearVisible(false), setGenreVisible(false)}}
+        className={
+          'filter__button button-author _btn-text' +
+          `${whatVisible === 'author' && ' filter__button_clicked'}`
+        }
+        onClick={() => {
+          if (whatVisible === 'author') {
+            toggleVisibility('');
+          } else {
+            toggleVisibility('author');
+          }
+        }}
       >
         исполнителю
       </div>
-      {isAuthorVisible && (
+      {whatVisible === 'author' && (
         <div className="filter__menu filter__menu_left">
           {tracks.map((track) => (
             <div key={track.id} className="filter__menu_item">

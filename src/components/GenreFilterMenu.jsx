@@ -1,22 +1,21 @@
 function GenreFilterMenu({
-  toggleGenreVisibility,
-  isGenreVisible,
-  setAuthorVisible,
-  setYearVisible,
+  toggleVisibility, whatVisible
 }) {
   return (
     <>
       <div
-        className={"filter__button button-year _btn-text" +`${isGenreVisible && (' filter__button_clicked')}`}
+        className={"filter__button button-year _btn-text" +`${whatVisible === 'genre' && (' filter__button_clicked')}`}
         onClick={() => {
-          toggleGenreVisibility(),
-            setAuthorVisible(false),
-            setYearVisible(false);
+          if (whatVisible === 'genre') {
+            toggleVisibility('')
+          } else {
+            toggleVisibility('genre')
+          }
         }}
       >
         жанру
       </div>
-      {isGenreVisible && (
+      {whatVisible === 'genre' && (
         <div className="filter__menu filter__menu_right">
           <div className="filter__menu_item">Рок</div>
           <div className="filter__menu_item">Хип-Хоп</div>
