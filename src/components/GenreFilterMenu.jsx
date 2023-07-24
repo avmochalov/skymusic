@@ -17,7 +17,7 @@ function GenreFilterMenu({
         жанру
       </div>
       {isGenreVisible && (
-        <div className="filter__menu">
+        <div className="filter__menu filter__menu_right">
           <div className="filter__menu_item">Рок</div>
           <div className="filter__menu_item">Хип-Хоп</div>
           <div className="filter__menu_item">Поп-музыка</div>

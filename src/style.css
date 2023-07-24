@@ -247,10 +247,6 @@ body {
   align-items: flex-start;
   gap: 24px;
   padding: 34px;
-  overflow: scroll;
-  position: absolute;
-  top: 50px;
-  left: 90px;
 }
 .filter__menu_item {
   color: #fff;
@@ -259,6 +255,24 @@ body {
 .filter__menu_item:hover {
   text-decoration: underline;
   color: #b672ff;
+}
+.filter__menu_left {
+  overflow: scroll;
+  position: absolute;
+  top: 50px;
+  left: 90px;
+}
+.filter__menu_center {
+  overflow: scroll;
+  position: absolute;
+  top: 50px;
+  left: 250px;
+}
+.filter__menu_right {
+  overflow: scroll;
+  position: absolute;
+  top: 50px;
+  left: 400px;
 }
 
 .content__title {

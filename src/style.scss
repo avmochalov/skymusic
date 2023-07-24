@@ -280,10 +280,6 @@ body {
     align-items: flex-start;
     gap: 24px;
     padding: 34px;
-    overflow: scroll;
-    position: absolute;
-    top: 50px;
-    left: 90px;
     &_item {
       color: #fff;
       cursor: pointer;
@@ -291,6 +287,24 @@ body {
         text-decoration: underline;
         color: #b672ff;
       }
+    }
+    &_left {
+      overflow: scroll;
+      position: absolute;
+      top: 50px;
+      left: 90px;
+    }
+    &_center {
+      overflow: scroll;
+      position: absolute;
+      top: 50px;
+      left: 250px;
+    }
+    &_right {
+      overflow: scroll;
+      position: absolute;
+      top: 50px;
+      left: 400px;
     }
   }
 }
@@ -745,5 +759,3 @@ body {
     width: 109px;
   }
 }
-
-

@@ -10,7 +10,7 @@ function AuthorFilterMenu({ toggleAuthorVisibility, isAuthorVisible, setYearVisi
         исполнителю
       </div>
       {isAuthorVisible && (
-        <div className="filter__menu">
+        <div className="filter__menu filter__menu_left">
           {tracks.map((track) => (
             <div key={track.id} className="filter__menu_item">
               {track.author}
