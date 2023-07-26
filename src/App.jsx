@@ -22,12 +22,7 @@ function App() {
     <div className="wrapper">
       <div className="container">
         <main className="main">
-          <nav className="main__nav nav">
-            <div className="nav__logo logo">
-              <img className="logo__image" src="img/logo.png" alt="logo"></img>
-            </div>
-            <BurgerMenu />
-          </nav>
+          <BurgerMenu />
           <div className="main__centerblock centerblock">
             <Search />
             <h2 className="centerblock__h2">Треки</h2>
@@ -42,9 +37,7 @@ function App() {
             {isLoading ? <SideBarPlug /> : <SideBar />}
           </div>
         </main>
-        <div className="bar">
-           {isLoading ? <PlayerPlug />: <Player />}
-        </div>
+        <div className="bar">{isLoading ? <PlayerPlug /> : <Player />}</div>
         <footer className="footer"></footer>
       </div>
     </div>
