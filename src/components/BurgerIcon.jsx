@@ -1,18 +1,11 @@
 import React from 'react';
-import { BurgerMenu } from './BurgerMenu';
-const { useState } = React;
-function BurgerIcon() {
-  const [visible, setVisible] = useState(false);
-  const toggleVisibility = () => setVisible(!visible);
+function BurgerIcon({ toggleVisibility }) {
   return (
-    <>
-      <div className="nav__burger burger" onClick={toggleVisibility}>
-        <span className="burger__line"></span>
-        <span className="burger__line"></span>
-        <span className="burger__line"></span>
-      </div>
-      <BurgerMenu isVisible={visible} />
-    </>
+    <div className="nav__burger burger" onClick={toggleVisibility}>
+      <span className="burger__line"></span>
+      <span className="burger__line"></span>
+      <span className="burger__line"></span>
+    </div>
   );
 }
 

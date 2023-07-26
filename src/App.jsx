@@ -1,16 +1,23 @@
-// import React from 'react';
 import './style.css';
 import { Search } from './components/Search';
-import { BurgerIcon } from './components/BurgerIcon';
-import { BurgerMenu } from './components/BurgerMenu';
 import { Filter } from './components/Filter';
 import { TrackListHeader } from './components/TrackListHeader';
 import { TrackList } from './components/TrackList';
 import { SideBar } from './components/SideBar';
 import { User } from './components/User';
 import { Player } from './components/Player';
+import { BurgerMenu } from './components/BurgerMenu';
+import { useEffect, useState } from 'react';
+import { SideBarPlug } from './components/SideBarPlug';
+import { TrackListPlug } from './components/TrackListPlug';
+import { PlayerPlug } from './components/PlayerPlug';
 
 function App() {
+  const [isLoading, setLoadingStatus] = useState(true);
+  const switchLoading = () => setLoadingStatus(!isLoading);
+  useEffect(() => {
+    setTimeout(switchLoading, 5000);
+  }, []);
   return (
     <div className="wrapper">
       <div className="container">
@@ -19,8 +26,7 @@ function App() {
             <div className="nav__logo logo">
               <img className="logo__image" src="img/logo.png" alt="logo"></img>
             </div>
-            <BurgerIcon />
-            {/* <BurgerMenu /> */}
+            <BurgerMenu />
           </nav>
           <div className="main__centerblock centerblock">
             <Search />
@@ -28,16 +34,16 @@ function App() {
             <Filter />
             <div className="centerblock__content">
               <TrackListHeader />
-              <TrackList />
+              {isLoading ? <TrackListPlug /> : <TrackList />}
             </div>
           </div>
           <div className="main__sidebar sidebar">
             <User />
-            <SideBar />
+            {isLoading ? <SideBarPlug /> : <SideBar />}
           </div>
         </main>
         <div className="bar">
-          <Player />
+           {isLoading ? <PlayerPlug />: <Player />}
         </div>
         <footer className="footer"></footer>
       </div>

@@ -1,11 +1,28 @@
-import React from 'react';
+import { useState } from 'react';
+import { AuthorFilterMenu } from './AuthorFilterMenu';
+import { YearFilterMenu } from './YearFilterMenu';
+import { GenreFilterMenu } from './GenreFilterMenu';
+
 function Filter() {
+  const [whatVisible, setVisible] = useState(null);
+  const toggleVisibility = (name) => setVisible(name);
+  console.log(whatVisible);
   return (
     <div className="centerblock__filter filter">
       <div className="filter__title">Искать по:</div>
-      <div className="filter__button button-author _btn-text">исполнителю</div>
-      <div className="filter__button button-year _btn-text">году выпуска</div>
-      <div className="filter__button button-genre _btn-text">жанру</div>
+
+      <AuthorFilterMenu
+        toggleVisibility={toggleVisibility}
+        whatVisible={whatVisible}
+      />
+      <YearFilterMenu
+        toggleVisibility={toggleVisibility}
+        whatVisible={whatVisible}
+      />
+      <GenreFilterMenu
+        toggleVisibility={toggleVisibility}
+        whatVisible={whatVisible}
+      />
     </div>
   );
 }

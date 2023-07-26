@@ -1,4 +1,3 @@
-import React from 'react';
 function Search() {
   return (
     <div className="centerblock__search search">
