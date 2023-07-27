@@ -1,9 +1,10 @@
+import * as S from'./FilterStyles'
 function GenreFilterMenu({
   toggleVisibility, whatVisible
 }) {
   return (
     <>
-      <div
+      <S.FilterButton
         className={"filter__button button-year _btn-text" +`${whatVisible === 'genre' && (' filter__button_clicked')}`}
         onClick={() => {
           if (whatVisible === 'genre') {
@@ -14,7 +15,7 @@ function GenreFilterMenu({
         }}
       >
         жанру
-      </div>
+      </S.FilterButton>
       {whatVisible === 'genre' && (
         <div className="filter__menu filter__menu_right">
           <div className="filter__menu_item">Рок</div>

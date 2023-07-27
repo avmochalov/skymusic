@@ -1,12 +1,12 @@
 import './style.css';
 import { Search } from './components/Search';
-import { Filter } from './components/Filter';
+import { Filter } from './components/Filter/Filter';
 import { TrackListHeader } from './components/TrackListHeader';
 import { TrackList } from './components/TrackList';
 import { SideBar } from './components/SideBar';
 import { User } from './components/User';
 import { Player } from './components/Player';
-import { BurgerMenu } from './components/BurgerMenu';
+import { BurgerMenu } from './components/BurgerMenu/BurgerMenu';
 import { useEffect, useState } from 'react';
 import { SideBarPlug } from './components/SideBarPlug';
 import { TrackListPlug } from './components/TrackListPlug';

@@ -1,7 +1,8 @@
+import * as S from'./FilterStyles'
 function YearFilterMenu({ toggleVisibility, whatVisible }) {
   return (
     <>
-      <div
+      <S.FilterButton
         className={
           'filter__button button-year _btn-text' +
           `${whatVisible === 'year' && ' filter__button_clicked'}`
@@ -15,7 +16,7 @@ function YearFilterMenu({ toggleVisibility, whatVisible }) {
         }}
       >
         году выпуска
-      </div>
+      </S.FilterButton>
       {whatVisible === 'year' && (
         <div className="filter__menu filter__menu_center">
           <div className="filter__menu_item">2020</div>
