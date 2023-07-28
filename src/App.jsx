@@ -3,14 +3,14 @@ import { Search } from './components/Search';
 import { Filter } from './components/Filter/Filter';
 import { TrackListHeader } from './components/TrackListHeader';
 import { TrackList } from './components/TrackList';
-import { SideBar } from './components/SideBar';
-import { User } from './components/User';
 import { Player } from './components/Player/Player';
 import { BurgerMenu } from './components/BurgerMenu/BurgerMenu';
 import { useEffect, useState } from 'react';
-import { SideBarPlug } from './components/SideBarPlug';
+import { SideBarPlug } from './components/SideBar/SideBarPlug';
 import { TrackListPlug } from './components/TrackListPlug';
 import { PlayerPlug } from './components/Player/PlayerPlug';
+import { SideBar } from './components/SideBar/SideBar';
+import { SideBarUser } from './components/SideBar/SideBarUser';
 
 function App() {
   const [isLoading, setLoadingStatus] = useState(true);
@@ -33,7 +33,7 @@ function App() {
             </div>
           </div>
           <div className="main__sidebar sidebar">
-            <User />
+            <SideBarUser />
             {isLoading ? <SideBarPlug /> : <SideBar />}
           </div>
         </main>
