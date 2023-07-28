@@ -4,43 +4,43 @@ import { tracks } from "../../data";
 
 function TrackList() {
   return (
-    <div className="content__playlist playlist">
+    <S.ContentPlaylist className="content__playlist playlist">
       {tracks.map((track) => (
-        <div key={track.id} className="playlist__item">
-          <div className="playlist__track track">
-            <div className="track__title">
-              <div className="track__title-image">
-                <svg className="track__title-svg" alt="music">
+        <S.PlaylistItem key={track.id} className="playlist__item">
+          <S.PlaylistTrack className="playlist__track track">
+            <S.TrackTitle className="track__title">
+              <S.TrackTitleImg className="track__title-image">
+                <S.TrackTitleSvg className="track__title-svg" alt="music">
                   <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
-                </svg>
-              </div>
+                </S.TrackTitleSvg>
+              </S.TrackTitleImg>
               <div className="track__title-text">
-                <a className="track__title-link" href="http://">
+                <S.TrackTitleLink className="track__title-link" href="http://">
                   {track.title}{' '}
-                  <span className="track__title-span">{track.info}</span>
-                </a>
+                  <S.TrackTitleSpan className="track__title-span">{track.info}</S.TrackTitleSpan>
+                </S.TrackTitleLink>
               </div>
-            </div>
-            <div className="track__author">
-              <a className="track__author-link" href="http://">
+            </S.TrackTitle>
+            <S.TrackAuthor  className="track__author">
+              <S.TrackAuthorLink className="track__author-link" href="http://">
                 {track.author}
-              </a>
-            </div>
-            <div className="track__album">
-              <a className="track__album-link" href="http://">
+              </S.TrackAuthorLink>
+            </S.TrackAuthor>
+            <S.TrackAlbum  className="track__album">
+              <S.TrackAlbumLink className="track__album-link" href="http://">
                 {track.album}
-              </a>
-            </div>
+              </S.TrackAlbumLink>
+            </S.TrackAlbum>
             <div className="track__time">
-              <svg className="track__time-svg" alt="time">
+              <S.TrackTimeSvg className="track__time-svg" alt="time">
                 <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
-              </svg>
-              <span className="track__time-text">{track.time}</span>
+              </S.TrackTimeSvg>
+              <S.TrackTimeText className="track__time-text">{track.time}</S.TrackTimeText>
             </div>
-          </div>
-        </div>
+          </S.PlaylistTrack>
+        </S.PlaylistItem>
       ))}
-    </div>
+    </S.ContentPlaylist>
   );
 }
 

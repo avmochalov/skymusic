@@ -3,18 +3,18 @@ import { tracks } from "../../data";
 
 function TrackListPlug() {
   return (
-    <div className="content__playlist playlist">
+    <S.ContentPlaylist className="content__playlist playlist">
       {tracks.map((track) => (
-        <div key={track.id} className="playlist__item">
-          <div className="playlist__track track">
+        <S.PlaylistItem key={track.id} className="playlist__item">
+          <S.PlaylistTrack className="playlist__track track">
           <img
                 src="img/plug/trackListPlug.svg"
                 alt="plug"
               ></img>
-          </div>
-        </div>
+          </S.PlaylistTrack>
+        </S.PlaylistItem>
       ))}
-    </div>
+    </S.ContentPlaylist>
   );
 }
 
