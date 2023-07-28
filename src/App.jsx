@@ -1,5 +1,5 @@
 import './style.css';
-import { Search } from './components/Search';
+import { Search } from './components/Search/Search';
 import { Filter } from './components/Filter/Filter';
 import { TrackListHeader } from './components/TrackList/TrackListHeader';
 import { TrackList } from './components/TrackList/TrackList';
