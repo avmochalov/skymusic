@@ -5,12 +5,12 @@ import { TrackListHeader } from './components/TrackListHeader';
 import { TrackList } from './components/TrackList';
 import { SideBar } from './components/SideBar';
 import { User } from './components/User';
-import { Player } from './components/Player';
+import { Player } from './components/Player/Player';
 import { BurgerMenu } from './components/BurgerMenu/BurgerMenu';
 import { useEffect, useState } from 'react';
 import { SideBarPlug } from './components/SideBarPlug';
 import { TrackListPlug } from './components/TrackListPlug';
-import { PlayerPlug } from './components/PlayerPlug';
+import { PlayerPlug } from './components/Player/PlayerPlug';
 
 function App() {
   const [isLoading, setLoadingStatus] = useState(true);
