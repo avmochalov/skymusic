@@ -174,49 +174,10 @@ body {
 }
 
 .filter {
-
   &__button {
     &_clicked {
       border-color: #d9b6ff;
       color: #d9b6ff;
-    }
-  }
-
-  &__menu {
-    border-radius: 12px;
-    max-width: 250px;
-    max-height: 305px;
-    background: #313131;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 24px;
-    padding: 34px;
-    &_item {
-      color: #fff;
-      cursor: pointer;
-      &:hover {
-        text-decoration: underline;
-        color: #b672ff;
-      }
-    }
-    &_left {
-      overflow: scroll;
-      position: absolute;
-      top: 50px;
-      left: 90px;
-    }
-    &_center {
-      overflow: scroll;
-      position: absolute;
-      top: 50px;
-      left: 250px;
-    }
-    &_right {
-      overflow: scroll;
-      position: absolute;
-      top: 50px;
-      left: 400px;
     }
   }
 }

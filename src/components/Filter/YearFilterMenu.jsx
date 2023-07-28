@@ -18,11 +18,11 @@ function YearFilterMenu({ toggleVisibility, whatVisible }) {
         году выпуска
       </S.FilterButton>
       {whatVisible === 'year' && (
-        <div className="filter__menu filter__menu_center">
-          <div className="filter__menu_item">2020</div>
-          <div className="filter__menu_item">2022</div>
-          <div className="filter__menu_item">2021</div>
-        </div>
+        <S.FilterMenuCenter className="filter__menu filter__menu_center">
+          <S.FilterMenuItem className="filter__menu_item">2020</S.FilterMenuItem>
+          <S.FilterMenuItem className="filter__menu_item">2022</S.FilterMenuItem>
+          <S.FilterMenuItem className="filter__menu_item">2021</S.FilterMenuItem>
+        </S.FilterMenuCenter>
       )}
     </>
   );

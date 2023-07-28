@@ -17,13 +17,13 @@ function GenreFilterMenu({
         жанру
       </S.FilterButton>
       {whatVisible === 'genre' && (
-        <div className="filter__menu filter__menu_right">
-          <div className="filter__menu_item">Рок</div>
-          <div className="filter__menu_item">Хип-Хоп</div>
-          <div className="filter__menu_item">Поп-музыка</div>
-          <div className="filter__menu_item">Техно</div>
-          <div className="filter__menu_item">Инди</div>
-        </div>
+        <S.FilterMenuRight  className="filter__menu filter__menu_right">
+          <S.FilterMenuItem className="filter__menu_item">Рок</S.FilterMenuItem>
+          <S.FilterMenuItem className="filter__menu_item">Хип-Хоп</S.FilterMenuItem>
+          <S.FilterMenuItem className="filter__menu_item">Поп-музыка</S.FilterMenuItem>
+          <S.FilterMenuItem className="filter__menu_item">Техно</S.FilterMenuItem>
+          <S.FilterMenuItem className="filter__menu_item">Инди</S.FilterMenuItem>
+        </S.FilterMenuRight>
       )}
     </>
   );
