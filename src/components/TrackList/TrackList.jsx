@@ -1,4 +1,6 @@
-import { tracks } from '../data';
+import * as S from "./TrackListStyles"
+import { tracks } from "../../data";
+
 
 function TrackList() {
   return (

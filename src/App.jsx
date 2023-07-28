@@ -1,13 +1,13 @@
 import './style.css';
 import { Search } from './components/Search';
 import { Filter } from './components/Filter/Filter';
-import { TrackListHeader } from './components/TrackListHeader';
-import { TrackList } from './components/TrackList';
+import { TrackListHeader } from './components/TrackList/TrackListHeader';
+import { TrackList } from './components/TrackList/TrackList';
 import { Player } from './components/Player/Player';
 import { BurgerMenu } from './components/BurgerMenu/BurgerMenu';
 import { useEffect, useState } from 'react';
 import { SideBarPlug } from './components/SideBar/SideBarPlug';
-import { TrackListPlug } from './components/TrackListPlug';
+import { TrackListPlug } from './components/TrackList/TrackListPlug';
 import { PlayerPlug } from './components/Player/PlayerPlug';
 import { SideBar } from './components/SideBar/SideBar';
 import { SideBarUser } from './components/SideBar/SideBarUser';
