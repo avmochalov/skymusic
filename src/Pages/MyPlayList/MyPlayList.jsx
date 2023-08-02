@@ -1,9 +1,9 @@
 import React from 'react'
 
-const MyPalyList = () => {
+const MyPlayList = () => {
   return (
     <div>MyPalyList</div>
   )
 }
 
-export default MyPalyList
+export default MyPlayList
