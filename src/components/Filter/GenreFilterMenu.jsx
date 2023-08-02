@@ -4,7 +4,7 @@ function GenreFilterMenu({
 }) {
   return (
     <>
-      <S.FilterButton
+      <S.FilterButton 
         className={"filter__button button-year _btn-text" +`${whatVisible === 'genre' && (' filter__button_clicked')}`}
         onClick={() => {
           if (whatVisible === 'genre') {
