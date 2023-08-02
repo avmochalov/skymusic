@@ -1,8 +1,10 @@
 import React from 'react'
-
+import * as S from'./NotFoundStyles'
 const NotFound = () => {
   return (
-    <div>NotFound</div>
+    <div>
+      <S.NotFoundText>Страница не найдена</S.NotFoundText>
+    </div>
   )
 }
 

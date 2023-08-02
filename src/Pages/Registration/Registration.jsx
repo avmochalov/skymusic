@@ -1,8 +1,10 @@
 import React from 'react'
-
+import * as S from './RegistrationStyles';
 const Registration = () => {
   return (
-    <div>Registration</div>
+    <div>
+      <S.RegistrationHeading>Регистрация</S.RegistrationHeading>
+    </div>
   )
 }
 

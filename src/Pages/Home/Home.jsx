@@ -17,7 +17,7 @@ function Home() {
   const [isLoading, setLoadingStatus] = useState(true);
   const switchLoading = () => setLoadingStatus(!isLoading);
   useEffect(() => {
-    setTimeout(switchLoading, 5000);
+    setTimeout(switchLoading, 2000);
   }, []);
   return (
     <S.Wrapper className="wrapper">
