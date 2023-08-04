@@ -1,9 +1,10 @@
-import { tracks } from '../data';
+import { tracks } from '../../data';
+import * as S from'./FilterStyles'
 
 function AuthorFilterMenu({ toggleVisibility, whatVisible }) {
   return (
     <>
-      <div
+      <S.FilterButton
         className={
           'filter__button button-author _btn-text' +
           `${whatVisible === 'author' && ' filter__button_clicked'}`
@@ -17,15 +18,15 @@ function AuthorFilterMenu({ toggleVisibility, whatVisible }) {
         }}
       >
         исполнителю
-      </div>
+      </S.FilterButton>
       {whatVisible === 'author' && (
-        <div className="filter__menu filter__menu_left">
+        <S.FilterMenuLeft className="filter__menu filter__menu_left">
           {tracks.map((track) => (
-            <div key={track.id} className="filter__menu_item">
+            <S.FilterMenuItem key={track.id} className="filter__menu_item">
               {track.author}
-            </div>
+            </S.FilterMenuItem>
           ))}
-        </div>
+        </S.FilterMenuLeft>
       )}
     </>
   );
