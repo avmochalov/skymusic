@@ -12,15 +12,17 @@ const AppRoutes = () => {
   return (
     <Routes>
       <Route
-        element=
-        {<ProtectedRoute isAllowed={Boolean(localStorage.getItem('Token'))} />}>
+        element={
+          <ProtectedRoute isAllowed={Boolean(localStorage.getItem('Token'))} />
+        }
+      >
         <Route path="/" element={<Home />} />
-        <Route path="/collections/:id" element={<Collections />} />
-        <Route path="/myplaylist" element={<MyPlayList />} />
-        <Route path="notfound" element={<NotFound />} />
+        <Route path="/category/:id" element={<Collections />} />
+        <Route path="/favorites" element={<MyPlayList />} />
       </Route>
+      <Route path="*" element={<NotFound />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/registration" element={<Registration />} />
+      <Route path="/register" element={<Registration />} />
     </Routes>
   );
 };
