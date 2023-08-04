@@ -48,12 +48,12 @@ export const FilterMenuLeft = styled.div`
 `;
 
 export const FilterMenuItem = styled.div`
-color: #fff;
-cursor: pointer;
-&:hover {
-  text-decoration: underline;
-  color: #b672ff;
-}
+  color: #fff;
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+    color: #b672ff;
+  }
 `;
 
 export const FilterMenuCenter = styled.div`

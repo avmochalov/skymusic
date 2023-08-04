@@ -1,22 +1,23 @@
-import { Search } from '../Search/Search';
-import { Filter } from '../Filter/Filter';
-import { TrackListHeader } from '../TrackList/TrackListHeader';
-import { TrackList } from '../TrackList/TrackList';
-import { Player } from '../Player/Player';
-import { BurgerMenu } from '../BurgerMenu/BurgerMenu';
+import { Search } from '../../components/Search/Search';
+import { Filter } from '../../components/Filter/Filter';
+import { TrackListHeader } from '../../components/TrackList/TrackListHeader';
+import { TrackList } from '../../components/TrackList/TrackList';
+import { Player } from '../../components/Player/Player';
+import { BurgerMenu } from '../../components/BurgerMenu/BurgerMenu';
+import { SideBarPlug } from '../../components/SideBar/SideBarPlug';
+import { TrackListPlug } from '../../components/TrackList/TrackListPlug';
+import { PlayerPlug } from '../../components/Player/PlayerPlug';
+import { SideBar } from '../../components/SideBar/SideBar';
+import { SideBarUser } from '../../components/SideBar/SideBarUser';
 import { useEffect, useState } from 'react';
-import { SideBarPlug } from '../SideBar/SideBarPlug';
-import { TrackListPlug } from '../TrackList/TrackListPlug';
-import { PlayerPlug } from '../Player/PlayerPlug';
-import { SideBar } from '../SideBar/SideBar';
-import { SideBarUser } from '../SideBar/SideBarUser';
-import * as S from'./AppStyles'
 
-function App() {
+import * as S from './HomeStyles';
+
+function Home() {
   const [isLoading, setLoadingStatus] = useState(true);
   const switchLoading = () => setLoadingStatus(!isLoading);
   useEffect(() => {
-    setTimeout(switchLoading, 5000);
+    setTimeout(switchLoading, 2000);
   }, []);
   return (
     <S.Wrapper className="wrapper">
@@ -44,4 +45,4 @@ function App() {
   );
 }
 
-export default App;
+export default Home;

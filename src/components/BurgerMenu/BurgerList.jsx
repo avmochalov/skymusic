@@ -1,30 +1,39 @@
+import { NavLink} from 'react-router-dom';
 import * as S from './BurgerMenuStyles';
 
 function BurgerList({ isVisible }) {
-    return (
-      <S.NavMenu className="nav__menu menu">
-        { isVisible  && (
-          <S.MenuList className="menu__list">
+  const logOut = () => {
+    localStorage.clear();
+  };
+  return (
+    <S.NavMenu className="nav__menu menu">
+      {isVisible && (
+        <S.MenuList className="menu__list">
+          <NavLink to="/">
             <S.MenuItem className="menu__item">
               <S.MenuLink href="http://" className="menu__link">
                 Главное
               </S.MenuLink>
             </S.MenuItem>
-            <S.MenuItem  className="menu__item">
+          </NavLink>
+          <NavLink to="/myplaylist">
+            <S.MenuItem className="menu__item">
               <S.MenuLink href="http://" className="menu__link">
                 Мой плейлист
               </S.MenuLink>
             </S.MenuItem>
-            <S.MenuItem  className="menu__item">
+          </NavLink>
+          <NavLink to="/login">
+            <S.MenuItem className="menu__item" onClick={logOut}>
               <S.MenuLink href="http://" className="menu__link">
-                Войти
+                Выйти
               </S.MenuLink>
             </S.MenuItem>
-          </S.MenuList>
-        )}
-      </S.NavMenu>
-    );
-  }
-  
-  export { BurgerList };
-  
+          </NavLink>
+        </S.MenuList>
+      )}
+    </S.NavMenu>
+  );
+}
+
+export { BurgerList };
