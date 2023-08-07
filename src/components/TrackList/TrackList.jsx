@@ -1,8 +1,8 @@
-import * as S from "./TrackListStyles"
-import { tracks } from "../../data";
+import * as S from './TrackListStyles';
+import { useEffect, useState } from 'react';
+import getTrackList from '../../api';
 
-
-function TrackList() {
+function TrackList({tracks}) {
   return (
     <S.ContentPlaylist className="content__playlist playlist">
       {tracks.map((track) => (
@@ -16,17 +16,18 @@ function TrackList() {
               </S.TrackTitleImg>
               <div className="track__title-text">
                 <S.TrackTitleLink className="track__title-link" href="http://">
-                  {track.title}{' '}
-                  <S.TrackTitleSpan className="track__title-span">{track.info}</S.TrackTitleSpan>
+                  {track.name}{' '}
+                  <S.TrackTitleSpan className="track__title-span">
+                  </S.TrackTitleSpan>
                 </S.TrackTitleLink>
               </div>
             </S.TrackTitle>
-            <S.TrackAuthor  className="track__author">
+            <S.TrackAuthor className="track__author">
               <S.TrackAuthorLink className="track__author-link" href="http://">
                 {track.author}
               </S.TrackAuthorLink>
             </S.TrackAuthor>
-            <S.TrackAlbum  className="track__album">
+            <S.TrackAlbum className="track__album">
               <S.TrackAlbumLink className="track__album-link" href="http://">
                 {track.album}
               </S.TrackAlbumLink>
@@ -35,7 +36,9 @@ function TrackList() {
               <S.TrackTimeSvg className="track__time-svg" alt="time">
                 <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
               </S.TrackTimeSvg>
-              <S.TrackTimeText className="track__time-text">{track.time}</S.TrackTimeText>
+              <S.TrackTimeText className="track__time-text">
+                {track.duration_in_seconds}
+              </S.TrackTimeText>
             </div>
           </S.PlaylistTrack>
         </S.PlaylistItem>

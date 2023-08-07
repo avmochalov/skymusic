@@ -12,12 +12,16 @@ import { SideBarUser } from '../../components/SideBar/SideBarUser';
 import { useEffect, useState } from 'react';
 
 import * as S from './HomeStyles';
+import getTrackList from '../../api';
 
 function Home() {
   const [isLoading, setLoadingStatus] = useState(true);
-  const switchLoading = () => setLoadingStatus(!isLoading);
+  const [tracks, setTrackList] = useState([]);
   useEffect(() => {
-    setTimeout(switchLoading, 2000);
+    getTrackList().then((tracks) => {
+      setTrackList(tracks);
+      setLoadingStatus(false)
+    });
   }, []);
   return (
     <S.Wrapper className="wrapper">
@@ -30,7 +34,7 @@ function Home() {
             <Filter />
             <S.CenterblockContent className="centerblock__content">
               <TrackListHeader />
-              {isLoading ? <TrackListPlug /> : <TrackList />}
+              {isLoading ? <TrackListPlug /> : <TrackList tracks={tracks} />}
             </S.CenterblockContent>
           </S.MainCenterblock>
           <S.MainSidebar className="main__sidebar sidebar">
