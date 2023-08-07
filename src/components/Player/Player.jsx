@@ -1,8 +1,9 @@
-import * as S from'./PlayerStyle'
+import * as S from './PlayerStyle';
 
-function Player() {
+function Player({ activTrack }) {
   return (
     <S.BarContent className="bar__content">
+      <audio controls src={activTrack.track_file}></audio>
       <S.BarPlayerProgress className="bar__player-progress"></S.BarPlayerProgress>
       <S.BarPlayerBlock className="bar__player-block">
         <S.BarPlayer className="bar__player player">
@@ -23,12 +24,18 @@ function Player() {
               </S.PlayerBtnNextSvg>
             </S.PlayerBtnNext>
             <S.PlayerBtnRepeat className="player__btn-repeat _btn-icon">
-              <S.PlayerBtnRepeatSvg className="player__btn-repeat-svg" alt="repeat">
+              <S.PlayerBtnRepeatSvg
+                className="player__btn-repeat-svg"
+                alt="repeat"
+              >
                 <use xlinkHref="img/icon/sprite.svg#icon-repeat"></use>
               </S.PlayerBtnRepeatSvg>
             </S.PlayerBtnRepeat>
             <S.PlayerBtnShuffle className="player__btn-shuffle _btn-icon">
-              <S.PlayerBtnShuffleSvg className="player__btn-shuffle-svg" alt="shuffle">
+              <S.PlayerBtnShuffleSvg
+                className="player__btn-shuffle-svg"
+                alt="shuffle"
+              >
                 <use xlinkHref="img/icon/sprite.svg#icon-shuffle"></use>
               </S.PlayerBtnShuffleSvg>
             </S.PlayerBtnShuffle>
@@ -42,25 +49,37 @@ function Player() {
                 </S.TrackPlaySvg>
               </S.TrackPlayImg>
               <S.TrackPlayAuthor className="track-play__author">
-                <S.TrackPlayAuthorLink className="track-play__author-link" href="http://">
-                  Ты та...
+                <S.TrackPlayAuthorLink
+                  className="track-play__author-link"
+                  href="http://"
+                >
+                  {activTrack.name}
                 </S.TrackPlayAuthorLink>
               </S.TrackPlayAuthor>
               <S.TrackPlayAlbum className="track-play__album">
-                <S.TrackPlayAlbumLink className="track-play__album-link" href="http://">
-                  Баста
+                <S.TrackPlayAlbumLink
+                  className="track-play__album-link"
+                  href="http://"
+                >
+                  {activTrack.author}
                 </S.TrackPlayAlbumLink>
               </S.TrackPlayAlbum>
             </S.TrackPlayContain>
 
             <S.TrackPlaytrackLikDdis className="track-play__like-dis">
               <S.TrackPlaytrackLike className="track-play__like _btn-icon">
-                <S.TrackPlaytracklikeSvg className="track-play__like-svg" alt="like">
+                <S.TrackPlaytracklikeSvg
+                  className="track-play__like-svg"
+                  alt="like"
+                >
                   <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
                 </S.TrackPlaytracklikeSvg>
               </S.TrackPlaytrackLike>
               <S.TrackPlaytrackDislike className="track-play__dislike _btn-icon">
-                <S.TrackPlaytrackDislikeSvg className="track-play__dislike-svg" alt="dislike">
+                <S.TrackPlaytrackDislikeSvg
+                  className="track-play__dislike-svg"
+                  alt="dislike"
+                >
                   <use xlinkHref="img/icon/sprite.svg#icon-dislike"></use>
                 </S.TrackPlaytrackDislikeSvg>
               </S.TrackPlaytrackDislike>

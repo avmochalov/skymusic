@@ -17,12 +17,14 @@ import getTrackList from '../../api';
 function Home() {
   const [isLoading, setLoadingStatus] = useState(true);
   const [tracks, setTrackList] = useState([]);
+  const [activTrack, setActivTrack] = useState(null);
   useEffect(() => {
     getTrackList().then((tracks) => {
       setTrackList(tracks);
-      setLoadingStatus(false)
+      setLoadingStatus(false);
     });
   }, []);
+  console.log(activTrack);
   return (
     <S.Wrapper className="wrapper">
       <S.Container className="container">
@@ -31,10 +33,14 @@ function Home() {
           <S.MainCenterblock className="main__centerblock centerblock">
             <Search />
             <S.CenterblockH2 className="centerblock__h2">Треки</S.CenterblockH2>
-            <Filter />
+            <Filter tracks={tracks}/>
             <S.CenterblockContent className="centerblock__content">
               <TrackListHeader />
-              {isLoading ? <TrackListPlug /> : <TrackList tracks={tracks} />}
+              {isLoading ? (
+                <TrackListPlug />
+              ) : (
+                <TrackList tracks={tracks} setActivTrack={setActivTrack} />
+              )}
             </S.CenterblockContent>
           </S.MainCenterblock>
           <S.MainSidebar className="main__sidebar sidebar">
@@ -42,7 +48,9 @@ function Home() {
             {isLoading ? <SideBarPlug /> : <SideBar />}
           </S.MainSidebar>
         </S.Main>
-        <S.Bar className="bar">{isLoading ? <PlayerPlug /> : <Player />}</S.Bar>
+        <S.Bar className="bar">
+          {activTrack ? <Player activTrack={activTrack} /> : null}
+        </S.Bar>
         <footer className="footer"></footer>
       </S.Container>
     </S.Wrapper>

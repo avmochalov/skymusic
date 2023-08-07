@@ -4,7 +4,7 @@ import { YearFilterMenu } from './YearFilterMenu';
 import { GenreFilterMenu } from './GenreFilterMenu';
 import * as S from'./FilterStyles'
 
-function Filter() {
+function Filter({tracks}) {
   const [whatVisible, setVisible] = useState(null);
   const toggleVisibility = (name) => setVisible(name);
   console.log(whatVisible);
@@ -15,14 +15,17 @@ function Filter() {
       <AuthorFilterMenu
         toggleVisibility={toggleVisibility}
         whatVisible={whatVisible}
+        tracks={tracks}
       />
       <YearFilterMenu
         toggleVisibility={toggleVisibility}
         whatVisible={whatVisible}
+        tracks={tracks}
       />
       <GenreFilterMenu
         toggleVisibility={toggleVisibility}
         whatVisible={whatVisible}
+        tracks={tracks}
       />
     </S.CenterblockFilter>
   );

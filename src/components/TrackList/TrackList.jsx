@@ -1,12 +1,14 @@
 import * as S from './TrackListStyles';
-import { useEffect, useState } from 'react';
-import getTrackList from '../../api';
 
-function TrackList({tracks}) {
+function TrackList({ tracks, setActivTrack }) {
   return (
     <S.ContentPlaylist className="content__playlist playlist">
       {tracks.map((track) => (
-        <S.PlaylistItem key={track.id} className="playlist__item">
+        <S.PlaylistItem
+          key={track.id}
+          className="playlist__item"
+          onClick={() => setActivTrack(track)}
+        >
           <S.PlaylistTrack className="playlist__track track">
             <S.TrackTitle className="track__title">
               <S.TrackTitleImg className="track__title-image">
@@ -17,8 +19,7 @@ function TrackList({tracks}) {
               <div className="track__title-text">
                 <S.TrackTitleLink className="track__title-link" href="http://">
                   {track.name}{' '}
-                  <S.TrackTitleSpan className="track__title-span">
-                  </S.TrackTitleSpan>
+                  <S.TrackTitleSpan className="track__title-span"></S.TrackTitleSpan>
                 </S.TrackTitleLink>
               </div>
             </S.TrackTitle>
