@@ -18,13 +18,18 @@ function Home() {
   const [isLoading, setLoadingStatus] = useState(true);
   const [tracks, setTrackList] = useState([]);
   const [activTrack, setActivTrack] = useState(null);
+  const [newApiError, setNewApiError] = useState(null);
   useEffect(() => {
-    getTrackList().then((tracks) => {
-      setTrackList(tracks);
-      setLoadingStatus(false);
-    });
+    getTrackList()
+      .then((tracks) => {
+        setTrackList(tracks);
+        setLoadingStatus(false);
+      })
+      .catch((error) => {
+        setNewApiError(error.message) 
+      });
   }, []);
-  console.log(activTrack);
+  console.log(newApiError)
   return (
     <S.Wrapper className="wrapper">
       <S.Container className="container">
@@ -33,9 +38,10 @@ function Home() {
           <S.MainCenterblock className="main__centerblock centerblock">
             <Search />
             <S.CenterblockH2 className="centerblock__h2">Треки</S.CenterblockH2>
-            <Filter tracks={tracks}/>
+            <Filter tracks={tracks} />
             <S.CenterblockContent className="centerblock__content">
               <TrackListHeader />
+              {newApiError ? <p>Не удалось загрузить данные</p> : null }
               {isLoading ? (
                 <TrackListPlug />
               ) : (
