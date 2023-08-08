@@ -17,19 +17,19 @@ function TrackList({ tracks, setActivTrack }) {
                 </S.TrackTitleSvg>
               </S.TrackTitleImg>
               <div className="track__title-text">
-                <S.TrackTitleLink className="track__title-link" href="http://">
+                <S.TrackTitleLink className="track__title-link">
                   {track.name}{' '}
                   <S.TrackTitleSpan className="track__title-span"></S.TrackTitleSpan>
                 </S.TrackTitleLink>
               </div>
             </S.TrackTitle>
             <S.TrackAuthor className="track__author">
-              <S.TrackAuthorLink className="track__author-link" href="http://">
+              <S.TrackAuthorLink className="track__author-link">
                 {track.author}
               </S.TrackAuthorLink>
             </S.TrackAuthor>
             <S.TrackAlbum className="track__album">
-              <S.TrackAlbumLink className="track__album-link" href="http://">
+              <S.TrackAlbumLink className="track__album-link">
                 {track.album}
               </S.TrackAlbumLink>
             </S.TrackAlbum>

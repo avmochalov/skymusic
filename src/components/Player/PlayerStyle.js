@@ -203,6 +203,10 @@ justify-content: end;
  export const VolumeProgressLine = styled.input`
  width: 109px;
  `;
+
+ export const AudioComponent = styled.audio`
+ width: 600px;
+ `;
 // export const TrackPlayAlbumLink = styled.div`
 
 // `;

@@ -1,9 +1,26 @@
+import { useRef, useState } from 'react';
 import * as S from './PlayerStyle';
 
 function Player({ activTrack }) {
+  const [isPlaying, setIsPlaying] = useState(true);
+  const audioComponentRef = useRef(null);
+  const handleClick = () => {
+    if (isPlaying) {
+      audioComponentRef.current.pause();
+      setIsPlaying(false);
+    } else {
+      audioComponentRef.current.play();
+      setIsPlaying(true);
+    }
+  };
   return (
     <S.BarContent className="bar__content">
-      <audio controls src={activTrack.track_file}></audio>
+      <S.AudioComponent
+        controls
+        src={activTrack.track_file}
+        ref={audioComponentRef}
+        autoPlay
+      ></S.AudioComponent>
       <S.BarPlayerProgress className="bar__player-progress"></S.BarPlayerProgress>
       <S.BarPlayerBlock className="bar__player-block">
         <S.BarPlayer className="bar__player player">
@@ -14,8 +31,16 @@ function Player({ activTrack }) {
               </S.PlayerBtnPrevSvg>
             </S.PlayerBtnPrev>
             <S.PlayerBtnPlay className="player__btn-play _btn">
-              <S.PlayerBtnPlaySvg className="player__btn-play-svg" alt="play">
-                <use xlinkHref="img/icon/sprite.svg#icon-play"></use>
+              <S.PlayerBtnPlaySvg
+                className="player__btn-play-svg"
+                alt="play"
+                onClick={handleClick}
+              >
+                {isPlaying ? (
+                  <use xlinkHref="img/icon/sprite.svg#icon-pause"></use>
+                ) : (
+                  <use xlinkHref="img/icon/sprite.svg#icon-play"></use>
+                )}
               </S.PlayerBtnPlaySvg>
             </S.PlayerBtnPlay>
             <S.PlayerBtnNext className="player__btn-next">
