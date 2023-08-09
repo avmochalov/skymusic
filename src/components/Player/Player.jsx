@@ -17,6 +17,9 @@ function Player({ activTrack, isPlaying, setIsPlaying }) {
     audioComponentRef.current.loop = !isRepeat;
     setIsRepeat(!isRepeat);
   };
+  const volumeOnChange = (event) => {
+    audioComponentRef.current.volume = event.target.value / 100;
+  };
   return (
     <S.BarContent className="bar__content">
       <S.AudioComponent
@@ -131,6 +134,7 @@ function Player({ activTrack, isPlaying, setIsPlaying }) {
                 className="volume__progress-line _btn"
                 type="range"
                 name="range"
+                onChange={volumeOnChange}
               ></S.VolumeProgressLine>
             </S.VolumeProgress>
           </S.VolumeContent>
