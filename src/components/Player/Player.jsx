@@ -1,10 +1,10 @@
 import { useRef, useState } from 'react';
 import * as S from './PlayerStyle';
 
-function Player({ activTrack }) {
-  const [isPlaying, setIsPlaying] = useState(true);
+function Player({ activTrack, isPlaying, setIsPlaying }) {
+  const [isRepeat, setIsRepeat] = useState(false);
   const audioComponentRef = useRef(null);
-  const handleClick = () => {
+  const playClick = () => {
     if (isPlaying) {
       audioComponentRef.current.pause();
       setIsPlaying(false);
@@ -12,6 +12,10 @@ function Player({ activTrack }) {
       audioComponentRef.current.play();
       setIsPlaying(true);
     }
+  };
+  const repeatClick = () => {
+    audioComponentRef.current.loop = !isRepeat;
+    setIsRepeat(!isRepeat);
   };
   return (
     <S.BarContent className="bar__content">
@@ -34,7 +38,7 @@ function Player({ activTrack }) {
               <S.PlayerBtnPlaySvg
                 className="player__btn-play-svg"
                 alt="play"
-                onClick={handleClick}
+                onClick={playClick}
               >
                 {isPlaying ? (
                   <use xlinkHref="img/icon/sprite.svg#icon-pause"></use>
@@ -48,10 +52,14 @@ function Player({ activTrack }) {
                 <use xlinkHref="img/icon/sprite.svg#icon-next"></use>
               </S.PlayerBtnNextSvg>
             </S.PlayerBtnNext>
-            <S.PlayerBtnRepeat className="player__btn-repeat _btn-icon">
+            <S.PlayerBtnRepeat
+              className="player__btn-repeat _btn-icon"
+              onClick={repeatClick}
+            >
               <S.PlayerBtnRepeatSvg
                 className="player__btn-repeat-svg"
                 alt="repeat"
+                $isRepeat={isRepeat}
               >
                 <use xlinkHref="img/icon/sprite.svg#icon-repeat"></use>
               </S.PlayerBtnRepeatSvg>

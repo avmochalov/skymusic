@@ -85,7 +85,7 @@ export const PlayerBtnRepeatSvg = styled.svg`
   width: 18px;
   height: 12px;
   fill: transparent;
-  stroke: #696969;
+  stroke: ${(props) => (props.$isRepeat ? 'white' : '#696969')};
 `;
 
 export const PlayerBtnShuffleSvg = styled.svg`
@@ -146,67 +146,67 @@ export const TrackPlayAlbumLink = styled.a`
   line-height: 24px;
   color: #ffffff;
 `;
- export const TrackPlaytrackLikDdis = styled.div`
- display: flex;
- flex-direction: row;
- align-items: center;
- margin-left: 26%;
+export const TrackPlaytrackLikDdis = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 26%;
 `;
- export const TrackPlaytrackLike = styled.div`
- padding: 5px;
- `;
- export const TrackPlaytrackDislike = styled.div`
- padding: 5px;
- margin-left: 28.5px;
- `;
- export const TrackPlaytracklikeSvg = styled.svg`
- width: 14px;
- height: 12px;
- fill: transparent;
- stroke: #696969;
- `;
- export const TrackPlaytrackDislikeSvg = styled.svg`
- width: 14.34px;
- height: 13px;
- fill: transparent;
- stroke: #696969;
- `;
+export const TrackPlaytrackLike = styled.div`
+  padding: 5px;
+`;
+export const TrackPlaytrackDislike = styled.div`
+  padding: 5px;
+  margin-left: 28.5px;
+`;
+export const TrackPlaytracklikeSvg = styled.svg`
+  width: 14px;
+  height: 12px;
+  fill: transparent;
+  stroke: #696969;
+`;
+export const TrackPlaytrackDislikeSvg = styled.svg`
+  width: 14.34px;
+  height: 13px;
+  fill: transparent;
+  stroke: #696969;
+`;
 export const BarVolumeBlock = styled.div`
-width: auto;
-display: flex;
-align-items: center;
-padding: 0 92px 0 0;
+  width: auto;
+  display: flex;
+  align-items: center;
+  padding: 0 92px 0 0;
 `;
 export const VolumeContent = styled.div`
-display: flex;
-flex-direction: row;
-align-items: center;
-justify-content: end;
- `;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: end;
+`;
 
- export const VolumeImg = styled.div`
- width: 13px;
- height: 18px;
- margin-right: 17px;
- `;
+export const VolumeImg = styled.div`
+  width: 13px;
+  height: 18px;
+  margin-right: 17px;
+`;
 
- export const VolumeSvg = styled.svg`
- width: 13px;
- height: 18px;
- fill: transparent;
- `;
+export const VolumeSvg = styled.svg`
+  width: 13px;
+  height: 18px;
+  fill: transparent;
+`;
 
- export const VolumeProgress = styled.div`
- width: 109px;
- `;
+export const VolumeProgress = styled.div`
+  width: 109px;
+`;
 
- export const VolumeProgressLine = styled.input`
- width: 109px;
- `;
+export const VolumeProgressLine = styled.input`
+  width: 109px;
+`;
 
- export const AudioComponent = styled.audio`
- width: 600px;
- `;
+export const AudioComponent = styled.audio`
+  width: 600px;
+`;
 // export const TrackPlayAlbumLink = styled.div`
 
 // `;

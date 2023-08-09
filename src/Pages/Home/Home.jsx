@@ -15,6 +15,7 @@ import * as S from './HomeStyles';
 import getTrackList from '../../api';
 
 function Home() {
+  const [isPlaying, setIsPlaying] = useState(true);
   const [isLoading, setLoadingStatus] = useState(true);
   const [tracks, setTrackList] = useState([]);
   const [activTrack, setActivTrack] = useState(null);
@@ -29,7 +30,7 @@ function Home() {
         setNewApiError(error.message) 
       });
   }, []);
-  console.log(newApiError)
+  console.log(tracks)
   return (
     <S.Wrapper className="wrapper">
       <S.Container className="container">
@@ -45,7 +46,7 @@ function Home() {
               {isLoading ? (
                 <TrackListPlug />
               ) : (
-                <TrackList tracks={tracks} setActivTrack={setActivTrack} />
+                <TrackList tracks={tracks} setActivTrack={setActivTrack} setIsPlaying={setIsPlaying} />
               )}
             </S.CenterblockContent>
           </S.MainCenterblock>
@@ -55,7 +56,7 @@ function Home() {
           </S.MainSidebar>
         </S.Main>
         <S.Bar className="bar">
-          {activTrack ? <Player activTrack={activTrack} /> : null}
+          {activTrack ? <Player activTrack={activTrack} isPlaying={isPlaying} setIsPlaying={setIsPlaying}/> : null}
         </S.Bar>
         <footer className="footer"></footer>
       </S.Container>

@@ -1,13 +1,16 @@
 import * as S from './TrackListStyles';
 
-function TrackList({ tracks, setActivTrack }) {
+function TrackList({ tracks, setActivTrack, setIsPlaying }) {
   return (
     <S.ContentPlaylist className="content__playlist playlist">
       {tracks.map((track) => (
         <S.PlaylistItem
           key={track.id}
           className="playlist__item"
-          onClick={() => setActivTrack(track)}
+          onClick={() => {
+            setActivTrack(track);
+            setIsPlaying(true);
+          }}
         >
           <S.PlaylistTrack className="playlist__track track">
             <S.TrackTitle className="track__title">
