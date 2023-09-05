@@ -206,12 +206,13 @@ export const VolumeProgressLine = styled.input`
 
 export const AudioComponent = styled.audio`
   width: 600px;
+  display: none;
 `;
 
 export const StyledProgressInput = styled.input`
   --progress-height: 8px;
   --progress-color: #b672ff;
-  --progress-color: ${(props) => props.$color ?? "#b672ff"};
+  --progress-color: ${(props) => props.$color ?? '#b672ff'};
 
   --progress-bg-color: #2e2e2e;
 

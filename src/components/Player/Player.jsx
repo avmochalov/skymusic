@@ -41,6 +41,7 @@ function Player({ activTrack, isPlaying, setIsPlaying }) {
       }
     };
     ref.addEventListener('timeupdate', timeUpdate);
+    
     return () => {
       ref.removeEventListener('timeupdate', timeUpdate);
     };
