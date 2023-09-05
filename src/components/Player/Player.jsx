@@ -45,7 +45,7 @@ function Player({ activTrack, isPlaying, setIsPlaying }) {
       ref.removeEventListener('timeupdate', timeUpdate);
     };
   });
-
+  const buttonPlug = () => alert('Еще не реализовано');
   return (
     <S.BarContent className="bar__content">
       <S.AudioComponent
@@ -68,7 +68,7 @@ function Player({ activTrack, isPlaying, setIsPlaying }) {
         <S.BarPlayer className="bar__player player">
           <S.PlayerControls className="player__controls">
             <S.PlayerBtnPrev className="player__btn-prev">
-              <S.PlayerBtnPrevSvg className="player__btn-prev-svg" alt="prev">
+              <S.PlayerBtnPrevSvg className="player__btn-prev-svg" alt="prev" onClick={buttonPlug}>
                 <use xlinkHref="img/icon/sprite.svg#icon-prev"></use>
               </S.PlayerBtnPrevSvg>
             </S.PlayerBtnPrev>
@@ -86,7 +86,7 @@ function Player({ activTrack, isPlaying, setIsPlaying }) {
               </S.PlayerBtnPlaySvg>
             </S.PlayerBtnPlay>
             <S.PlayerBtnNext className="player__btn-next">
-              <S.PlayerBtnNextSvg className="player__btn-next-svg" alt="next">
+              <S.PlayerBtnNextSvg className="player__btn-next-svg" alt="next" onClick={buttonPlug}>
                 <use xlinkHref="img/icon/sprite.svg#icon-next"></use>
               </S.PlayerBtnNextSvg>
             </S.PlayerBtnNext>
@@ -106,6 +106,7 @@ function Player({ activTrack, isPlaying, setIsPlaying }) {
               <S.PlayerBtnShuffleSvg
                 className="player__btn-shuffle-svg"
                 alt="shuffle"
+                onClick={buttonPlug}
               >
                 <use xlinkHref="img/icon/sprite.svg#icon-shuffle"></use>
               </S.PlayerBtnShuffleSvg>
