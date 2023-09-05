@@ -1,8 +1,11 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import * as S from './PlayerStyle';
 
 function Player({ activTrack, isPlaying, setIsPlaying }) {
   const [isRepeat, setIsRepeat] = useState(false);
+  const [volume, setVolume] = useState(1);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
   const audioComponentRef = useRef(null);
   const playClick = () => {
     if (isPlaying) {
@@ -18,8 +21,31 @@ function Player({ activTrack, isPlaying, setIsPlaying }) {
     setIsRepeat(!isRepeat);
   };
   const volumeOnChange = (event) => {
-    audioComponentRef.current.volume = event.target.value / 100;
+    const newVolume = audioComponentRef.current.volume;
+    setVolume(newVolume);
+    audioComponentRef.current.volume = event.target.value;
   };
+  const timeOnChange = (event) => {
+    audioComponentRef.current.currentTime = event.target.value;
+  };
+  useEffect(() => {
+    const ref = audioComponentRef.current;
+
+    const timeUpdate = (event) => {
+      if (ref.currentTime && ref.duration) {
+        setCurrentTime(ref.currentTime);
+        setDuration(ref.duration);
+      } else {
+        setCurrentTime(0);
+        setDuration(0);
+      }
+    };
+    ref.addEventListener('timeupdate', timeUpdate);
+    return () => {
+      ref.removeEventListener('timeupdate', timeUpdate);
+    };
+  });
+
   return (
     <S.BarContent className="bar__content">
       <S.AudioComponent
@@ -28,6 +54,15 @@ function Player({ activTrack, isPlaying, setIsPlaying }) {
         ref={audioComponentRef}
         autoPlay
       ></S.AudioComponent>
+      <S.StyledProgressInput
+        type="range"
+        min={0}
+        max={duration}
+        value={currentTime}
+        step={0.01}
+        onChange={timeOnChange}
+        $color="#ff0000"
+      />
       <S.BarPlayerProgress className="bar__player-progress"></S.BarPlayerProgress>
       <S.BarPlayerBlock className="bar__player-block">
         <S.BarPlayer className="bar__player player">
@@ -134,6 +169,10 @@ function Player({ activTrack, isPlaying, setIsPlaying }) {
                 className="volume__progress-line _btn"
                 type="range"
                 name="range"
+                value={volume}
+                min={0}
+                max={1}
+                step={0.01}
                 onChange={volumeOnChange}
               ></S.VolumeProgressLine>
             </S.VolumeProgress>
