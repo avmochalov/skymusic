@@ -1,7 +1,7 @@
 import React from 'react'
 
 const getTrackList = async () => {
-    const tracksResponse = await fetch(`https://painassasin.online/catalog/track/all/`);
+    const tracksResponse = await fetch(`https://skypro-music-api.skyeng.tech/catalog/track/all/`);
     const tracks = await tracksResponse.json()
     
     if (!tracksResponse) {
