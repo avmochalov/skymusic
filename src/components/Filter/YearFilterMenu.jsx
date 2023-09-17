@@ -1,5 +1,5 @@
-import * as S from'./FilterStyles'
-function YearFilterMenu({ toggleVisibility, whatVisible }) {
+import * as S from './FilterStyles';
+function YearFilterMenu({ toggleVisibility, whatVisible, tracks }) {
   return (
     <>
       <S.FilterButton
@@ -19,9 +19,11 @@ function YearFilterMenu({ toggleVisibility, whatVisible }) {
       </S.FilterButton>
       {whatVisible === 'year' && (
         <S.FilterMenuCenter className="filter__menu filter__menu_center">
-          <S.FilterMenuItem className="filter__menu_item">2020</S.FilterMenuItem>
-          <S.FilterMenuItem className="filter__menu_item">2022</S.FilterMenuItem>
-          <S.FilterMenuItem className="filter__menu_item">2021</S.FilterMenuItem>
+          {tracks.map((track) => (
+            <S.FilterMenuItem key={track.id} className="filter__menu_item">
+              {track.release_date}
+            </S.FilterMenuItem>
+          ))}
         </S.FilterMenuCenter>
       )}
     </>

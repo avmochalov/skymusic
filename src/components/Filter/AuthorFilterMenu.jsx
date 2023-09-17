@@ -1,7 +1,7 @@
 import { tracks } from '../../data';
 import * as S from './FilterStyles';
 
-function AuthorFilterMenu({ toggleVisibility, whatVisible }) {
+function AuthorFilterMenu({ toggleVisibility, whatVisible, tracks }) {
   return (
     <>
       <S.FilterButton
