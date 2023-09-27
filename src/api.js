@@ -55,11 +55,12 @@ const loginUser = async ({ email, password }) => {
   );
   const response = await registerRequest.json();
   console.log(response);
-  if (!registerRequest) {
-    throw new Error('Ошибка сервера');
+  if (registerRequest.status === 401) {
+    throw new Error(response.detail);
   }
 
-  return;
+
+  return response;
 };
 
 export { getTrackList, registerUser, loginUser };

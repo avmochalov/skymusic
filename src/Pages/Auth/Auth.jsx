@@ -3,18 +3,31 @@ import * as S from './AuthStyles';
 import { registerUser, loginUser } from '../../api';
 import { useEffect, useState } from 'react';
 
-export default function AuthPage() {
+export default function AuthPage({ isLoginMode }) {
   const [error, setError] = useState(null);
-  const [isLoginMode, setIsLoginMode] = useState(true);
   const [buttonDisableStatus, setButtonDisableStatus] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
   const navigate = useNavigate();
 
-
   const handleLogin = async ({ email, password }) => {
-    loginUser({ email, password });
+    setButtonDisableStatus(true);
+    if (password == false || email == false) {
+      setError('Укажите почту/пароль');
+      setButtonDisableStatus(false);
+    } else {
+      loginUser({ email, password })
+        .then((response) => {
+          localStorage.setItem('user', JSON.stringify(response));
+          setButtonDisableStatus(false);
+          navigate('/');
+        })
+        .catch((error) => {
+          setError(error.message);
+          setButtonDisableStatus(false);
+        });
+    }
   };
 
   const handleRegister = async () => {
@@ -28,7 +41,7 @@ export default function AuthPage() {
     } else {
       registerUser({ email, password })
         .then((response) => {
-          localStorage.setItem("user", JSON.stringify(response));
+          localStorage.setItem('user', JSON.stringify(response));
           setButtonDisableStatus(false);
           // navigate('/');
         })

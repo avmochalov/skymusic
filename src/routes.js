@@ -21,8 +21,8 @@ const AppRoutes = () => {
         <Route path="/favorites" element={<MyPlayList />} />
       </Route>
       <Route path="*" element={<NotFound />} />
-      <Route path="/login" element={<AuthPage />} />
-      <Route path="/register" element={<AuthPage />} />
+      <Route path="/login" element={<AuthPage isLoginMode={true} />} />
+      <Route path="/register" element={<AuthPage isLoginMode={false}/>} />
     </Routes>
   );
 };
