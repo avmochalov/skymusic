@@ -13,7 +13,7 @@ const AppRoutes = () => {
     <Routes>
       <Route
         element={
-          <ProtectedRoute isAllowed={Boolean(localStorage.getItem('Token'))} />
+          <ProtectedRoute isAllowed={Boolean(localStorage.getItem('user'))} />
         }
       >
         <Route path="/" element={<Home />} />
