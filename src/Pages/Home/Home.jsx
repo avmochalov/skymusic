@@ -12,7 +12,7 @@ import { SideBarUser } from '../../components/SideBar/SideBarUser';
 import { useEffect, useState } from 'react';
 
 import * as S from './HomeStyles';
-import getTrackList from '../../api';
+import {getTrackList} from '../../api';
 
 function Home() {
   const [isPlaying, setIsPlaying] = useState(true);

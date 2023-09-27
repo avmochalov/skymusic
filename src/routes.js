@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Home from './Pages/Home/Home';
-import Login from './Pages/Login/Login';
+import AuthPage from './Pages/Auth/Auth';
 import Collections from './Pages/Collections/Collections';
 import Registration from './Pages/Registration/Registration';
 import NotFound from './Pages/NotFound/NotFound';
@@ -21,8 +21,8 @@ const AppRoutes = () => {
         <Route path="/favorites" element={<MyPlayList />} />
       </Route>
       <Route path="*" element={<NotFound />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Registration />} />
+      <Route path="/login" element={<AuthPage />} />
+      <Route path="/register" element={<AuthPage />} />
     </Routes>
   );
 };

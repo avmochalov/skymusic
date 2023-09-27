@@ -1,22 +1,33 @@
-import { Link } from "react-router-dom";
-import * as S from "./LoginStyles";
-import { useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
+import * as S from './AuthStyles';
+import { registerUser, loginUser } from '../../api';
+import { useEffect, useState } from 'react';
 
 export default function AuthPage({ isLoginMode = false }) {
   const [error, setError] = useState(null);
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [repeatPassword, setRepeatPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [repeatPassword, setRepeatPassword] = useState('');
 
   const handleLogin = async ({ email, password }) => {
-    alert(`Выполняется вход: ${email} ${password}`);
-    setError("Неизвестная ошибка входа");
+    loginUser({ email, password });
+    // alert(`Выполняется вход: ${email} ${password}`);
+    // setError('Неизвестная ошибка входа');
   };
 
   const handleRegister = async () => {
-    alert(`Выполняется регистрация: ${email} ${password}`);
-    setError("Неизвестная ошибка регистрации");
+    if (password !== repeatPassword) {
+      setError('Пароли должны совпадать');
+    } else if (password == false || email == false){
+      setError('Укажите почту/пароль');
+    } else {
+      registerUser({ email, password }).catch((error) => {
+        setError(error.message);
+      });
+    }
+    // alert(`Выполняется регистрация: ${email} ${password}`);
+    // setError("Неизвестная ошибка регистрации");
   };
 
   // Сбрасываем ошибку если пользователь меняет данные на форме или меняется режим формы
