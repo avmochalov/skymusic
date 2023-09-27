@@ -1,30 +1,41 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import * as S from './AuthStyles';
 import { registerUser, loginUser } from '../../api';
 import { useEffect, useState } from 'react';
 
-export default function AuthPage({ isLoginMode = false }) {
+export default function AuthPage() {
   const [error, setError] = useState(null);
-
+  const [isLoginMode, setIsLoginMode] = useState(true);
+  const [buttonDisableStatus, setButtonDisableStatus] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
+  const navigate = useNavigate();
+
 
   const handleLogin = async ({ email, password }) => {
     loginUser({ email, password });
-    // alert(`Выполняется вход: ${email} ${password}`);
-    // setError('Неизвестная ошибка входа');
   };
 
   const handleRegister = async () => {
+    setButtonDisableStatus(true);
     if (password !== repeatPassword) {
       setError('Пароли должны совпадать');
-    } else if (password == false || email == false){
+      setButtonDisableStatus(false);
+    } else if (password == false || email == false) {
       setError('Укажите почту/пароль');
+      setButtonDisableStatus(false);
     } else {
-      registerUser({ email, password }).catch((error) => {
-        setError(error.message);
-      });
+      registerUser({ email, password })
+        .then((response) => {
+          localStorage.setItem("user", JSON.stringify(response));
+          setButtonDisableStatus(false);
+          // navigate('/');
+        })
+        .catch((error) => {
+          setError(error.message);
+          setButtonDisableStatus(false);
+        });
     }
     // alert(`Выполняется регистрация: ${email} ${password}`);
     // setError("Неизвестная ошибка регистрации");
@@ -108,7 +119,10 @@ export default function AuthPage({ isLoginMode = false }) {
             </S.Inputs>
             {error && <S.Error>{error}</S.Error>}
             <S.Buttons>
-              <S.PrimaryButton onClick={handleRegister}>
+              <S.PrimaryButton
+                onClick={handleRegister}
+                disabled={buttonDisableStatus}
+              >
                 Зарегистрироваться
               </S.PrimaryButton>
             </S.Buttons>
