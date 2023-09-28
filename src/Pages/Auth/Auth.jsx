@@ -43,7 +43,7 @@ export default function AuthPage({ isLoginMode }) {
         .then((response) => {
           localStorage.setItem('user', JSON.stringify(response));
           setButtonDisableStatus(false);
-          // navigate('/');
+          navigate('/login');
         })
         .catch((error) => {
           setError(error.message);
