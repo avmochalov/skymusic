@@ -208,7 +208,11 @@ export const AudioComponent = styled.audio`
   width: 600px;
   display: none;
 `;
-
+export const Timer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 10px;
+`;
 export const StyledProgressInput = styled.input`
   --progress-height: 8px;
   --progress-color: #b672ff;
