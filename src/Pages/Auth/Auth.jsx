@@ -2,6 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import * as S from './AuthStyles';
 import { registerUser, loginUser } from '../../api';
 import { useEffect, useState } from 'react';
+import { useUserContext } from '../../context/user';
 
 export default function AuthPage({ isLoginMode }) {
   const [error, setError] = useState(null);
@@ -10,6 +11,7 @@ export default function AuthPage({ isLoginMode }) {
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
   const navigate = useNavigate();
+  const {setCurrentUser} = useUserContext();
 
   const handleLogin = async ({ email, password }) => {
     setButtonDisableStatus(true);
@@ -21,6 +23,7 @@ export default function AuthPage({ isLoginMode }) {
         .then((response) => {
           localStorage.setItem('user', JSON.stringify(response));
           setButtonDisableStatus(false);
+          setCurrentUser(JSON.parse(localStorage.getItem('user')))
           navigate('/');
         })
         .catch((error) => {

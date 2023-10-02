@@ -3,14 +3,15 @@ import { useUserContext } from '../../context/user';
 import { NavLink } from 'react-router-dom';
 
 function SideBarUser() {
-  const authUser = useUserContext();
+  const {currentUser} = useUserContext();
+  console.log(currentUser);
   const logOut = () => {
     localStorage.clear();
   };
   return (
     <S.SidebarPersonal className="sidebar__personal">
       <S.SidebarPersonalName className="sidebar__personal-name">
-        {authUser.username}
+        {currentUser.username}
       </S.SidebarPersonalName>
       <NavLink to="/login">
         <S.SidebarAvatar
