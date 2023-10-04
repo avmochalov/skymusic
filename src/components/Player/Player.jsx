@@ -46,7 +46,6 @@ function Player({ activTrack, isPlaying, setIsPlaying }) {
       ref.removeEventListener('timeupdate', timeUpdate);
     };
   });
-  console.log(Math.trunc(currentTime % 60) < 10)
   const buttonPlug = () => alert('Еще не реализовано');
   return (
     <S.BarContent className="bar__content">
