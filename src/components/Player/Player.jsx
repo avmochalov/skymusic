@@ -41,7 +41,7 @@ function Player({ activTrack, isPlaying, setIsPlaying }) {
       }
     };
     ref.addEventListener('timeupdate', timeUpdate);
-    
+
     return () => {
       ref.removeEventListener('timeupdate', timeUpdate);
     };
@@ -49,6 +49,24 @@ function Player({ activTrack, isPlaying, setIsPlaying }) {
   const buttonPlug = () => alert('Еще не реализовано');
   return (
     <S.BarContent className="bar__content">
+      <S.Timer>
+        
+        {Math.trunc(currentTime / 60) < 10
+          ? '0' + Math.trunc(currentTime / 60)
+          : Math.trunc(currentTime / 60)}
+        :
+        {Math.trunc(currentTime % 60) < 10
+          ? '0' + Math.trunc(currentTime % 60)
+          : Math.trunc(currentTime % 60)}
+        /
+        {Math.trunc(duration / 60) < 10
+          ? '0' + Math.trunc(duration / 60)
+          : Math.trunc(duration / 60)}
+        :
+        {Math.trunc(duration % 60) < 10
+          ? '0' + Math.trunc(duration % 60)
+          : Math.trunc(duration % 60)}
+      </S.Timer>
       <S.AudioComponent
         controls
         src={activTrack.track_file}
@@ -69,7 +87,11 @@ function Player({ activTrack, isPlaying, setIsPlaying }) {
         <S.BarPlayer className="bar__player player">
           <S.PlayerControls className="player__controls">
             <S.PlayerBtnPrev className="player__btn-prev">
-              <S.PlayerBtnPrevSvg className="player__btn-prev-svg" alt="prev" onClick={buttonPlug}>
+              <S.PlayerBtnPrevSvg
+                className="player__btn-prev-svg"
+                alt="prev"
+                onClick={buttonPlug}
+              >
                 <use xlinkHref="img/icon/sprite.svg#icon-prev"></use>
               </S.PlayerBtnPrevSvg>
             </S.PlayerBtnPrev>
@@ -87,7 +109,11 @@ function Player({ activTrack, isPlaying, setIsPlaying }) {
               </S.PlayerBtnPlaySvg>
             </S.PlayerBtnPlay>
             <S.PlayerBtnNext className="player__btn-next">
-              <S.PlayerBtnNextSvg className="player__btn-next-svg" alt="next" onClick={buttonPlug}>
+              <S.PlayerBtnNextSvg
+                className="player__btn-next-svg"
+                alt="next"
+                onClick={buttonPlug}
+              >
                 <use xlinkHref="img/icon/sprite.svg#icon-next"></use>
               </S.PlayerBtnNextSvg>
             </S.PlayerBtnNext>

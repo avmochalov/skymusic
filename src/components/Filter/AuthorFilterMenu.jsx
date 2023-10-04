@@ -1,4 +1,4 @@
-import { tracks } from '../../data';
+// import { tracks } from '../../data';
 import * as S from './FilterStyles';
 
 function AuthorFilterMenu({ toggleVisibility, whatVisible, tracks }) {

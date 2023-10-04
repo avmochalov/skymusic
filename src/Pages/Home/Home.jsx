@@ -12,7 +12,7 @@ import { SideBarUser } from '../../components/SideBar/SideBarUser';
 import { useEffect, useState } from 'react';
 
 import * as S from './HomeStyles';
-import getTrackList from '../../api';
+import { getTrackList } from '../../API/track';
 
 function Home() {
   const [isPlaying, setIsPlaying] = useState(true);
@@ -27,10 +27,10 @@ function Home() {
         setLoadingStatus(false);
       })
       .catch((error) => {
-        setNewApiError(error.message) 
+        setNewApiError(error.message);
       });
   }, []);
-  console.log(tracks)
+  console.log(tracks);
   return (
     <S.Wrapper className="wrapper">
       <S.Container className="container">
@@ -42,11 +42,15 @@ function Home() {
             <Filter tracks={tracks} />
             <S.CenterblockContent className="centerblock__content">
               <TrackListHeader />
-              {newApiError ? <p>Не удалось загрузить данные</p> : null }
+              {newApiError ? <p>Не удалось загрузить данные</p> : null}
               {isLoading ? (
                 <TrackListPlug />
               ) : (
-                <TrackList tracks={tracks} setActivTrack={setActivTrack} setIsPlaying={setIsPlaying} />
+                <TrackList
+                  tracks={tracks}
+                  setActivTrack={setActivTrack}
+                  setIsPlaying={setIsPlaying}
+                />
               )}
             </S.CenterblockContent>
           </S.MainCenterblock>
@@ -56,7 +60,13 @@ function Home() {
           </S.MainSidebar>
         </S.Main>
         <S.Bar className="bar">
-          {activTrack ? <Player activTrack={activTrack} isPlaying={isPlaying} setIsPlaying={setIsPlaying}/> : null}
+          {activTrack ? (
+            <Player
+              activTrack={activTrack}
+              isPlaying={isPlaying}
+              setIsPlaying={setIsPlaying}
+            />
+          ) : null}
         </S.Bar>
         <footer className="footer"></footer>
       </S.Container>
