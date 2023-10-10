@@ -1,8 +1,13 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import * as S from './TrackListStyles';
+import { setCurrentTrack } from '../../store/actions/creators/skymusic';
+import { currentTrackIdSelector } from '../../store/selectors/skymusic';
 
 function TrackList({ setActivTrack, setIsPlaying }) {
   const tracks = useSelector((store) => store.AudioPlayer.trackList);
+  const currentTrackId = useSelector(currentTrackIdSelector);
+  console.log(currentTrackId);
+  const dispatch = useDispatch();
   return (
     <S.ContentPlaylist className="content__playlist playlist">
       {tracks.map((track) => (
@@ -10,15 +15,31 @@ function TrackList({ setActivTrack, setIsPlaying }) {
           key={track.id}
           className="playlist__item"
           onClick={() => {
+            dispatch(setCurrentTrack(track));
             setActivTrack(track);
             setIsPlaying(true);
           }}
         >
+          {/* track__title-svg pulse-point */}
           <S.PlaylistTrack className="playlist__track track">
             <S.TrackTitle className="track__title">
               <S.TrackTitleImg className="track__title-image">
-                <S.TrackTitleSvg className="track__title-svg" alt="music">
-                  <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+                <S.TrackTitleSvg
+                  className={`${
+                    track.id === currentTrackId
+                      ? 'track__title-svg pulse-point'
+                      : 'track__title-svg'
+                  }`}
+                  alt="music"
+                >
+                  {track.id === currentTrackId ? (
+                    <use
+                      className=""
+                      xlinkHref="img/icon/sprite.svg#pulse_point"
+                    ></use>
+                  ) : (
+                    <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+                  )}
                 </S.TrackTitleSvg>
               </S.TrackTitleImg>
               <div className="track__title-text">

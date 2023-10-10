@@ -1,23 +1,26 @@
-import { CREATE_TRACK_LIST } from '../actions/types/skymusic';
+import { CREATE_TRACK_LIST, SET_CURRENT_TRACK } from '../actions/types/skymusic';
 
-// 1.
-const initialState = {};
+const initialState = {
+  trackList: [],
+  currentTrack: [],
+};
 
-// 2.
 export default function playerReducer(state = initialState, action) {
   switch (action.type) {
-    // 3.
     case CREATE_TRACK_LIST: {
-      // 4.
       const { trackList } = action.payload;
-
-      // 5.
       return {
         ...state,
         trackList,
       };
     }
-
+    case SET_CURRENT_TRACK: {
+      const { currentTrack } = action.payload;
+      return {
+        ...state,
+        currentTrack,
+      };
+    }
     default:
       return state;
   }
