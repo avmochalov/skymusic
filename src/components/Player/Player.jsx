@@ -1,19 +1,24 @@
 import { useEffect, useRef, useState } from 'react';
 import * as S from './PlayerStyle';
+import { pauseTrack, playTrack } from '../../store/actions/creators/skymusic';
+import { useDispatch, useSelector } from 'react-redux';
 
-function Player({ activTrack, isPlaying, setIsPlaying }) {
+function Player({ activTrack }) {
   const [isRepeat, setIsRepeat] = useState(false);
   const [volume, setVolume] = useState(1);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
+  const playingStatus = useSelector((store) => store.AudioPlayer.playing);
   const audioComponentRef = useRef(null);
+  const dispatch = useDispatch();
   const playClick = () => {
-    if (isPlaying) {
+    if (playingStatus) {
       audioComponentRef.current.pause();
-      setIsPlaying(false);
+      dispatch(pauseTrack(true));
+      console.log("Сработала пауза")
     } else {
       audioComponentRef.current.play();
-      setIsPlaying(true);
+      dispatch(playTrack(true));
     }
   };
   const repeatClick = () => {
@@ -101,7 +106,7 @@ function Player({ activTrack, isPlaying, setIsPlaying }) {
                 alt="play"
                 onClick={playClick}
               >
-                {isPlaying ? (
+                {playingStatus ? (
                   <use xlinkHref="img/icon/sprite.svg#icon-pause"></use>
                 ) : (
                   <use xlinkHref="img/icon/sprite.svg#icon-play"></use>

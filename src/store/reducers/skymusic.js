@@ -1,8 +1,9 @@
-import { CREATE_TRACK_LIST, SET_CURRENT_TRACK } from '../actions/types/skymusic';
+import { CREATE_TRACK_LIST, PAUSE, PLAY, SET_CURRENT_TRACK } from '../actions/types/skymusic';
 
 const initialState = {
   trackList: [],
   currentTrack: [],
+  playing: false,
 };
 
 export default function playerReducer(state = initialState, action) {
@@ -18,7 +19,22 @@ export default function playerReducer(state = initialState, action) {
       const { currentTrack } = action.payload;
       return {
         ...state,
+        playing: true,
         currentTrack,
+      };
+    }
+    case PLAY: {
+      const { trackStatus } = action.payload;
+      return {
+        ...state,
+        playing: trackStatus,
+      };
+    }
+    case PAUSE: {
+      const { trackStatus } = action.payload;
+      return {
+        ...state,
+        playing: !trackStatus,
       };
     }
     default:

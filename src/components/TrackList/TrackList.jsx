@@ -5,6 +5,7 @@ import { currentTrackIdSelector } from '../../store/selectors/skymusic';
 
 function TrackList({ setActivTrack, setIsPlaying }) {
   const tracks = useSelector((store) => store.AudioPlayer.trackList);
+  const playingStatus = useSelector((store) => store.AudioPlayer.playing);
   const currentTrackId = useSelector(currentTrackIdSelector);
   console.log(currentTrackId);
   const dispatch = useDispatch();
@@ -26,17 +27,14 @@ function TrackList({ setActivTrack, setIsPlaying }) {
               <S.TrackTitleImg className="track__title-image">
                 <S.TrackTitleSvg
                   className={`${
-                    track.id === currentTrackId
+                    playingStatus && track.id === currentTrackId
                       ? 'track__title-svg pulse-point'
                       : 'track__title-svg'
                   }`}
                   alt="music"
                 >
                   {track.id === currentTrackId ? (
-                    <use
-                      className=""
-                      xlinkHref="img/icon/sprite.svg#pulse_point"
-                    ></use>
+                    <use xlinkHref="img/icon/sprite.svg#pulse_point"></use>
                   ) : (
                     <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
                   )}
