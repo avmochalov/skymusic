@@ -1,6 +1,8 @@
+import { useSelector } from 'react-redux';
 import * as S from './TrackListStyles';
 
-function TrackList({ tracks, setActivTrack, setIsPlaying }) {
+function TrackList({ setActivTrack, setIsPlaying }) {
+  const tracks = useSelector((store) => store.AudioPlayer.trackList);
   return (
     <S.ContentPlaylist className="content__playlist playlist">
       {tracks.map((track) => (
