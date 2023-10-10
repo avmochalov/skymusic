@@ -20,13 +20,12 @@ function Player() {
   const audioComponentRef = useRef(null);
   const currentTrackId = useSelector(currentTrackIdSelector);
   const tracks = useSelector((store) => store.AudioPlayer.trackList);
-  const currentTrackIndex = tracks.findIndex((currentTrack) => {
-    return currentTrack.id === currentTrackId;
-  });
+  const currentTrackIndex = tracks.findIndex((currentTrack) => currentTrack.id === currentTrackId);
   const dispatch = useDispatch();
   const nextTrackToggle = () => {
     if (currentTrackIndex < tracks.length - 1) {
       dispatch(nextTrack(tracks[currentTrackIndex + 1]));
+      dispatch(playTrack(true));
     } else {
       console.log('Exit from if else');
     }
@@ -34,6 +33,7 @@ function Player() {
   const prevTrackToggle = () => {
     if (currentTrackIndex >= 1) {
       dispatch(prevTrack(tracks[currentTrackIndex - 1]));
+      dispatch(playTrack(true));
     } else {
       console.log('Exit from if else');
     }
