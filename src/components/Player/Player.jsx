@@ -1,21 +1,33 @@
 import { useEffect, useRef, useState } from 'react';
 import * as S from './PlayerStyle';
-import { pauseTrack, playTrack } from '../../store/actions/creators/skymusic';
+import { pauseTrack, playTrack, setCurrentTrack } from '../../store/actions/creators/skymusic';
 import { useDispatch, useSelector } from 'react-redux';
+import { currentTrackIdSelector } from '../../store/selectors/skymusic';
 
-function Player({ activTrack }) {
+function Player() {
   const [isRepeat, setIsRepeat] = useState(false);
   const [volume, setVolume] = useState(1);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
+  const currentTrack = useSelector((store) => store.AudioPlayer.currentTrack);
   const playingStatus = useSelector((store) => store.AudioPlayer.playing);
   const audioComponentRef = useRef(null);
+  const currentTrackId = useSelector(currentTrackIdSelector);
+  const tracks = useSelector((store) => store.AudioPlayer.trackList);
+  const currentTrackIndex = tracks.findIndex((currentTrack) => {
+    return currentTrack.id === currentTrackId;
+  });
   const dispatch = useDispatch();
+  const nextTrack = () => {
+    dispatch(setCurrentTrack(tracks[currentTrackIndex + 1]));
+  };
+  const prevTrack = () => {
+    dispatch(setCurrentTrack(tracks[currentTrackIndex - 1]));
+  };
   const playClick = () => {
     if (playingStatus) {
       audioComponentRef.current.pause();
       dispatch(pauseTrack(true));
-      console.log("Сработала пауза")
     } else {
       audioComponentRef.current.play();
       dispatch(playTrack(true));
@@ -55,7 +67,6 @@ function Player({ activTrack }) {
   return (
     <S.BarContent className="bar__content">
       <S.Timer>
-        
         {Math.trunc(currentTime / 60) < 10
           ? '0' + Math.trunc(currentTime / 60)
           : Math.trunc(currentTime / 60)}
@@ -74,7 +85,7 @@ function Player({ activTrack }) {
       </S.Timer>
       <S.AudioComponent
         controls
-        src={activTrack.track_file}
+        src={currentTrack.track_file}
         ref={audioComponentRef}
         autoPlay
       ></S.AudioComponent>
@@ -95,7 +106,7 @@ function Player({ activTrack }) {
               <S.PlayerBtnPrevSvg
                 className="player__btn-prev-svg"
                 alt="prev"
-                onClick={buttonPlug}
+                onClick={prevTrack}
               >
                 <use xlinkHref="img/icon/sprite.svg#icon-prev"></use>
               </S.PlayerBtnPrevSvg>
@@ -117,7 +128,7 @@ function Player({ activTrack }) {
               <S.PlayerBtnNextSvg
                 className="player__btn-next-svg"
                 alt="next"
-                onClick={buttonPlug}
+                onClick={nextTrack}
               >
                 <use xlinkHref="img/icon/sprite.svg#icon-next"></use>
               </S.PlayerBtnNextSvg>
@@ -157,7 +168,7 @@ function Player({ activTrack }) {
                   className="track-play__author-link"
                   href="http://"
                 >
-                  {activTrack.name}
+                  {currentTrack.name}
                 </S.TrackPlayAuthorLink>
               </S.TrackPlayAuthor>
               <S.TrackPlayAlbum className="track-play__album">
@@ -165,7 +176,7 @@ function Player({ activTrack }) {
                   className="track-play__album-link"
                   href="http://"
                 >
-                  {activTrack.author}
+                  {currentTrack.author}
                 </S.TrackPlayAlbumLink>
               </S.TrackPlayAlbum>
             </S.TrackPlayContain>
