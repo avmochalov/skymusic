@@ -1,6 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import * as S from './PlayerStyle';
-import { pauseTrack, playTrack, setCurrentTrack } from '../../store/actions/creators/skymusic';
+import {
+  nextTrack,
+  pauseTrack,
+  playTrack,
+  prevTrack,
+  setCurrentTrack,
+} from '../../store/actions/creators/skymusic';
 import { useDispatch, useSelector } from 'react-redux';
 import { currentTrackIdSelector } from '../../store/selectors/skymusic';
 
@@ -18,11 +24,19 @@ function Player() {
     return currentTrack.id === currentTrackId;
   });
   const dispatch = useDispatch();
-  const nextTrack = () => {
-    dispatch(setCurrentTrack(tracks[currentTrackIndex + 1]));
+  const nextTrackToggle = () => {
+    if (currentTrackIndex < tracks.length - 1) {
+      dispatch(nextTrack(tracks[currentTrackIndex + 1]));
+    } else {
+      console.log('Exit from if else');
+    }
   };
-  const prevTrack = () => {
-    dispatch(setCurrentTrack(tracks[currentTrackIndex - 1]));
+  const prevTrackToggle = () => {
+    if (currentTrackIndex >= 1) {
+      dispatch(prevTrack(tracks[currentTrackIndex - 1]));
+    } else {
+      console.log('Exit from if else');
+    }
   };
   const playClick = () => {
     if (playingStatus) {
@@ -106,7 +120,7 @@ function Player() {
               <S.PlayerBtnPrevSvg
                 className="player__btn-prev-svg"
                 alt="prev"
-                onClick={prevTrack}
+                onClick={prevTrackToggle}
               >
                 <use xlinkHref="img/icon/sprite.svg#icon-prev"></use>
               </S.PlayerBtnPrevSvg>
@@ -128,7 +142,7 @@ function Player() {
               <S.PlayerBtnNextSvg
                 className="player__btn-next-svg"
                 alt="next"
-                onClick={nextTrack}
+                onClick={nextTrackToggle}
               >
                 <use xlinkHref="img/icon/sprite.svg#icon-next"></use>
               </S.PlayerBtnNextSvg>

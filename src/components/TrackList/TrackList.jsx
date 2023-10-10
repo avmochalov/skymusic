@@ -7,7 +7,6 @@ function TrackList({ setActivTrack, setIsPlaying }) {
   const tracks = useSelector((store) => store.AudioPlayer.trackList);
   const playingStatus = useSelector((store) => store.AudioPlayer.playing);
   const currentTrackId = useSelector(currentTrackIdSelector);
-  console.log(currentTrackId);
   const dispatch = useDispatch();
   return (
     <S.ContentPlaylist className="content__playlist playlist">
