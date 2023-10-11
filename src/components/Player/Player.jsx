@@ -44,12 +44,18 @@ function Player() {
     }
   };
   const prevTrackToggle = () => {
-    if (currentTrackIndex >= 1) {
-      dispatch(prevTrack(tracks[currentTrackIndex - 1]));
-      dispatch(playTrack(true));
+    if (currentTime < 5) {
+      if (currentTrackIndex >= 1) {
+        dispatch(prevTrack(tracks[currentTrackIndex - 1]));
+        dispatch(playTrack(true));
+      } else {
+        console.log('Exit from if else');
+      }
     } else {
-      console.log('Exit from if else');
+      const ref = audioComponentRef.current;
+      ref.currentTime = 0;
     }
+
   };
   const playClick = () => {
     if (playingStatus) {
@@ -98,7 +104,6 @@ function Player() {
       ref.removeEventListener('timeupdate', timeUpdate);
     };
   });
-  const buttonPlug = () => alert('Еще не реализовано');
   return (
     <S.BarContent className="bar__content">
       <S.Timer>
