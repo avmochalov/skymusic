@@ -6,6 +6,7 @@ import {
   playTrack,
   prevTrack,
   setCurrentTrack,
+  shuffleTracks,
 } from '../../store/actions/creators/skymusic';
 import { useDispatch, useSelector } from 'react-redux';
 import { currentTrackIdSelector } from '../../store/selectors/skymusic';
@@ -17,14 +18,26 @@ function Player() {
   const [duration, setDuration] = useState(0);
   const currentTrack = useSelector((store) => store.AudioPlayer.currentTrack);
   const playingStatus = useSelector((store) => store.AudioPlayer.playing);
+  const shuffleStatus = useSelector((store) => store.AudioPlayer.shuffled);
   const audioComponentRef = useRef(null);
   const currentTrackId = useSelector(currentTrackIdSelector);
   const tracks = useSelector((store) => store.AudioPlayer.trackList);
-  const currentTrackIndex = tracks.findIndex((currentTrack) => currentTrack.id === currentTrackId);
+  const currentTrackIndex = tracks.findIndex(
+    (currentTrack) => currentTrack.id === currentTrackId,
+  );
+  const shuffledTrackList = [...tracks].sort(() => Math.random() - 0.5);
+  const getCurrentTrackList = () => {
+    if (shuffleStatus === false) {
+      return tracks;
+    } else {
+      return shuffledTrackList;
+    }
+  };
+  const currentTrackList = getCurrentTrackList()
   const dispatch = useDispatch();
   const nextTrackToggle = () => {
     if (currentTrackIndex < tracks.length - 1) {
-      dispatch(nextTrack(tracks[currentTrackIndex + 1]));
+      dispatch(nextTrack(currentTrackList[currentTrackIndex + 1]));
       dispatch(playTrack(true));
     } else {
       console.log('Exit from if else');
@@ -58,6 +71,14 @@ function Player() {
   };
   const timeOnChange = (event) => {
     audioComponentRef.current.currentTime = event.target.value;
+  };
+
+  const shuffleToggle = () => {
+    if (shuffleStatus === false) {
+      dispatch(shuffleTracks(true, shuffledTrackList));
+    } else {
+      dispatch(shuffleTracks(false, []));
+    }
   };
   useEffect(() => {
     const ref = audioComponentRef.current;
@@ -163,7 +184,8 @@ function Player() {
               <S.PlayerBtnShuffleSvg
                 className="player__btn-shuffle-svg"
                 alt="shuffle"
-                onClick={buttonPlug}
+                onClick={shuffleToggle}
+                $shuffleStatus={shuffleStatus}
               >
                 <use xlinkHref="img/icon/sprite.svg#icon-shuffle"></use>
               </S.PlayerBtnShuffleSvg>

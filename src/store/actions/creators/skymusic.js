@@ -1,4 +1,4 @@
-import { CREATE_TRACK_LIST, NEXT_TRACK, PAUSE, PLAY, PREV_TRACK, SET_CURRENT_TRACK } from '../types/skymusic';
+import { CREATE_TRACK_LIST, NEXT_TRACK, PAUSE, PLAY, PREV_TRACK, SET_CURRENT_TRACK, TOGGLE_SHUFFL } from '../types/skymusic';
 
 export const crateTrackList = ( trackList ) => ({
   type: CREATE_TRACK_LIST,
@@ -37,5 +37,12 @@ export const prevTrack = ( track ) => ({
   type: PREV_TRACK,
   payload: {
     track,
+  },
+});
+
+export const shuffleTracks = ( isShuffled, shuffledTrackList ) => ({
+  type: TOGGLE_SHUFFL,
+  payload: {
+    isShuffled, shuffledTrackList,
   },
 });
