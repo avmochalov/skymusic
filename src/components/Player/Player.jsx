@@ -128,6 +128,7 @@ function Player() {
         src={currentTrack.track_file}
         ref={audioComponentRef}
         autoPlay
+        onEnded = {() => dispatch(nextTrack(currentTrackList[currentTrackIndex + 1])) }
       ></S.AudioComponent>
       <S.StyledProgressInput
         type="range"
