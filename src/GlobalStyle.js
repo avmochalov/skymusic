@@ -1,6 +1,24 @@
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
+@keyframes pulse-point {
+	0% {
+		transform: scale(0.50);
+	}
+	
+	70% {
+		transform: scale(1);
+	}
+	
+	100% {
+		transform: scale(0.50);
+	}
+}
+
+.pulse-point {
+	box-shadow: 0 0 0 0 rgba(142, 68, 173, 1);
+	animation: pulse-point  1s infinite;
+}
 * {
     margin: 0;
     padding: 0;

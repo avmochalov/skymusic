@@ -13,6 +13,8 @@ import { useEffect, useState } from 'react';
 
 import * as S from './HomeStyles';
 import { getTrackList } from '../../API/track';
+import { useDispatch } from 'react-redux';
+import { crateTrackList } from '../../store/actions/creators/skymusic';
 
 function Home() {
   const [isPlaying, setIsPlaying] = useState(true);
@@ -20,11 +22,14 @@ function Home() {
   const [tracks, setTrackList] = useState([]);
   const [activTrack, setActivTrack] = useState(null);
   const [newApiError, setNewApiError] = useState(null);
+  const dispatch = useDispatch();
+  
   useEffect(() => {
     getTrackList()
       .then((tracks) => {
         setTrackList(tracks);
         setLoadingStatus(false);
+        dispatch(crateTrackList(tracks));
       })
       .catch((error) => {
         setNewApiError(error.message);
@@ -47,7 +52,6 @@ function Home() {
                 <TrackListPlug />
               ) : (
                 <TrackList
-                  tracks={tracks}
                   setActivTrack={setActivTrack}
                   setIsPlaying={setIsPlaying}
                 />
