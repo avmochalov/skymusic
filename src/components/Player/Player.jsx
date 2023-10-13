@@ -16,16 +16,12 @@ function Player() {
   const [volume, setVolume] = useState(1);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
+  const tracks = useSelector((store) => store.AudioPlayer.trackList);
+  const shuffledTrackList = useSelector((store) => store.AudioPlayer.shuffledTrackList);;
   const currentTrack = useSelector((store) => store.AudioPlayer.currentTrack);
   const playingStatus = useSelector((store) => store.AudioPlayer.playing);
   const shuffleStatus = useSelector((store) => store.AudioPlayer.shuffled);
   const audioComponentRef = useRef(null);
-  const currentTrackId = useSelector(currentTrackIdSelector);
-  const tracks = useSelector((store) => store.AudioPlayer.trackList);
-  const currentTrackIndex = tracks.findIndex(
-    (currentTrack) => currentTrack.id === currentTrackId,
-  );
-  const shuffledTrackList = [...tracks].sort(() => Math.random() - 0.5);
   const getCurrentTrackList = () => {
     if (shuffleStatus === false) {
       return tracks;
@@ -33,7 +29,13 @@ function Player() {
       return shuffledTrackList;
     }
   };
-  const currentTrackList = getCurrentTrackList()
+  const currentTrackList = getCurrentTrackList();
+  const currentTrackId = useSelector(currentTrackIdSelector);
+  const currentTrackIndex = currentTrackList.findIndex(
+    (currentTrack) => currentTrack.id === currentTrackId,
+  );
+console.log(currentTrackIndex)
+console.log(currentTrackList)
   const dispatch = useDispatch();
   const nextTrackToggle = () => {
     if (currentTrackIndex < tracks.length - 1) {
@@ -46,7 +48,7 @@ function Player() {
   const prevTrackToggle = () => {
     if (currentTime < 5) {
       if (currentTrackIndex >= 1) {
-        dispatch(prevTrack(tracks[currentTrackIndex - 1]));
+        dispatch(prevTrack(currentTrackList[currentTrackIndex - 1]));
         dispatch(playTrack(true));
       } else {
         console.log('Exit from if else');
@@ -55,7 +57,6 @@ function Player() {
       const ref = audioComponentRef.current;
       ref.currentTime = 0;
     }
-
   };
   const playClick = () => {
     if (playingStatus) {
@@ -81,7 +82,7 @@ function Player() {
 
   const shuffleToggle = () => {
     if (shuffleStatus === false) {
-      dispatch(shuffleTracks(true, shuffledTrackList));
+      dispatch(shuffleTracks(true, [...tracks].sort(() => Math.random() - 0.5)));
     } else {
       dispatch(shuffleTracks(false, []));
     }
@@ -128,7 +129,7 @@ function Player() {
         src={currentTrack.track_file}
         ref={audioComponentRef}
         autoPlay
-        onEnded = {() => dispatch(nextTrack(currentTrackList[currentTrackIndex + 1])) }
+        onEnded={() => nextTrackToggle()}
       ></S.AudioComponent>
       <S.StyledProgressInput
         type="range"
