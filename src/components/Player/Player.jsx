@@ -6,16 +6,18 @@ import {
   playTrack,
   prevTrack,
   setCurrentTrack,
+  setRepeatState,
   shuffleTracks,
 } from '../../store/actions/creators/skymusic';
 import { useDispatch, useSelector } from 'react-redux';
 import { currentTrackIdSelector } from '../../store/selectors/skymusic';
 
 function Player() {
-  const [isRepeat, setIsRepeat] = useState(false);
+  // const [isRepeat, setIsRepeat] = useState(false);
   const [volume, setVolume] = useState(1);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
+  const isRepeat = useSelector((store) => store.AudioPlayer.player.isRepeat);
   const tracks = useSelector((store) => store.AudioPlayer.trackList);
   const shuffledTrackList = useSelector((store) => store.AudioPlayer.shuffledTrackList);;
   const currentTrack = useSelector((store) => store.AudioPlayer.currentTrack);
@@ -69,7 +71,7 @@ console.log(currentTrackList)
   };
   const repeatClick = () => {
     audioComponentRef.current.loop = !isRepeat;
-    setIsRepeat(!isRepeat);
+    dispatch(setRepeatState(!isRepeat));
   };
   const volumeOnChange = (event) => {
     const newVolume = audioComponentRef.current.volume;

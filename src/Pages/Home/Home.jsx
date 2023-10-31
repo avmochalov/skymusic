@@ -13,69 +13,24 @@ import { useEffect, useState } from 'react';
 
 import * as S from './HomeStyles';
 import { getTrackList } from '../../API/track';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { crateTrackList } from '../../store/actions/creators/skymusic';
 
-function Home() {
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [isLoading, setLoadingStatus] = useState(true);
-  const [tracks, setTrackList] = useState([]);
-  const [activTrack, setActivTrack] = useState(null);
-  const [newApiError, setNewApiError] = useState(null);
-  const dispatch = useDispatch();
-  
-  useEffect(() => {
-    getTrackList()
-      .then((tracks) => {
-        setTrackList(tracks);
-        setLoadingStatus(false);
-        dispatch(crateTrackList(tracks));
-      })
-      .catch((error) => {
-        setNewApiError(error.message);
-      });
-  }, []);
-  console.log(tracks);
-  return (
-    <S.Wrapper className="wrapper">
-      <S.Container className="container">
-        <S.Main className="main">
-          <BurgerMenu />
-          <S.MainCenterblock className="main__centerblock centerblock">
-            <Search />
-            <S.CenterblockH2 className="centerblock__h2">Треки</S.CenterblockH2>
-            <Filter tracks={tracks} />
-            <S.CenterblockContent className="centerblock__content">
-              <TrackListHeader />
-              {newApiError ? <p>Не удалось загрузить данные</p> : null}
-              {isLoading ? (
-                <TrackListPlug />
-              ) : (
-                <TrackList
-                  setActivTrack={setActivTrack}
-                  setIsPlaying={setIsPlaying}
-                />
-              )}
-            </S.CenterblockContent>
-          </S.MainCenterblock>
-          <S.MainSidebar className="main__sidebar sidebar">
-            <SideBarUser />
-            {isLoading ? <SideBarPlug /> : <SideBar />}
-          </S.MainSidebar>
-        </S.Main>
-        <S.Bar className="bar">
-          {activTrack ? (
-            <Player
-              activTrack={activTrack}
-              isPlaying={isPlaying}
-              setIsPlaying={setIsPlaying}
-            />
-          ) : null}
-        </S.Bar>
-        <footer className="footer"></footer>
-      </S.Container>
-    </S.Wrapper>
-  );
+function Home({isLoading, newApiError}) {
+  return(
+    <>
+  <S.CenterblockH2 className="centerblock__h2">Треки</S.CenterblockH2>
+  <Filter />
+  <S.CenterblockContent className="centerblock__content">
+    <TrackListHeader />
+    {newApiError ? <p>Не удалось загрузить данные</p> : null}
+    {isLoading ? (
+      <TrackListPlug />
+    ) : (
+      <TrackList />
+    )}
+  </S.CenterblockContent>
+  </>)
 }
 
 export default Home;

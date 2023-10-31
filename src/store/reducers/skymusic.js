@@ -1,11 +1,21 @@
-import { CREATE_TRACK_LIST, NEXT_TRACK, PAUSE, PLAY, PREV_TRACK, SET_CURRENT_TRACK, TOGGLE_SHUFFL } from '../actions/types/skymusic';
+import {
+  CREATE_TRACK_LIST,
+  NEXT_TRACK,
+  PAUSE,
+  PLAY,
+  PREV_TRACK,
+  SET_CURRENT_TRACK,
+  SET_REPEAT_STATE,
+  TOGGLE_SHUFFL,
+} from '../actions/types/skymusic';
 
 const initialState = {
   trackList: [],
-  currentTrack: [],
+  currentTrack: {},
   playing: false,
   shuffled: false,
   shuffledTrackList: [],
+  player: { isRepeat: false, volume: 1, currentTime: 0, duration: 0 },
 };
 
 export default function playerReducer(state = initialState, action) {
@@ -61,6 +71,13 @@ export default function playerReducer(state = initialState, action) {
         ...state,
         shuffled: isShuffled,
         shuffledTrackList,
+      };
+    }
+    case SET_REPEAT_STATE: {
+      const { isRepeat } = action.payload;
+      return {
+        ...state,
+        player:{isRepeat: isRepeat},
       };
     }
     default:

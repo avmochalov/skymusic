@@ -3,7 +3,7 @@ import * as S from './TrackListStyles';
 import { setCurrentTrack } from '../../store/actions/creators/skymusic';
 import { currentTrackIdSelector } from '../../store/selectors/skymusic';
 
-function TrackList({ setActivTrack, setIsPlaying }) {
+function TrackList() {
   const tracks = useSelector((store) => store.AudioPlayer.trackList);
   const playingStatus = useSelector((store) => store.AudioPlayer.playing);
   const currentTrackId = useSelector(currentTrackIdSelector);
@@ -16,8 +16,6 @@ function TrackList({ setActivTrack, setIsPlaying }) {
           className="playlist__item"
           onClick={() => {
             dispatch(setCurrentTrack(track));
-            setActivTrack(track);
-            setIsPlaying(true);
           }}
         >
           {/* track__title-svg pulse-point */}
