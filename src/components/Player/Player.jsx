@@ -13,7 +13,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { currentTrackIdSelector } from '../../store/selectors/skymusic';
 
 function Player() {
-  // const [isRepeat, setIsRepeat] = useState(false);
   const [volume, setVolume] = useState(1);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -36,8 +35,6 @@ function Player() {
   const currentTrackIndex = currentTrackList.findIndex(
     (currentTrack) => currentTrack.id === currentTrackId,
   );
-console.log(currentTrackIndex)
-console.log(currentTrackList)
   const dispatch = useDispatch();
   const nextTrackToggle = () => {
     if (currentTrackIndex < tracks.length - 1) {

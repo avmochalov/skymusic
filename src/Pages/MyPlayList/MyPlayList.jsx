@@ -15,17 +15,30 @@ import * as S from './MyPlayListStyles';
 import { getTrackList } from '../../API/track';
 import { useDispatch, useSelector } from 'react-redux';
 import { crateTrackList } from '../../store/actions/creators/skymusic';
+import { useGetFavoritesTracksQuery } from '../../services/skymusic';
 
-function MyPlayList({ isLoading, newApiError }) {
+function MyPlayList({ newApiError }) {
+  const { data, error, isLoading } = useGetFavoritesTracksQuery();
+  console.log(error);
   return (
     <>
-      <S.CenterblockH2 className="centerblock__h2">Мои треки</S.CenterblockH2>
-      <Filter />
-      <S.CenterblockContent className="centerblock__content">
-        <TrackListHeader />
-        {newApiError ? <p>Не удалось загрузить данные</p> : null}
-        {isLoading ? <TrackListPlug /> : <TrackList />}
-      </S.CenterblockContent>
+      <S.MainCenterblock className="main__centerblock centerblock">
+        <Search />
+        <S.CenterblockH2 className="centerblock__h2">Мои треки</S.CenterblockH2>
+        <S.CenterblockContent className="centerblock__content">
+          <TrackListHeader />
+          {isLoading ? (
+            <TrackListPlug />
+          ) : error ? (
+            <p>{error.data.detail}</p>
+          ) : (
+            <TrackList data={data} />
+          )}
+        </S.CenterblockContent>
+      </S.MainCenterblock>
+      <S.MainSidebar className="main__sidebar sidebar">
+        <SideBarUser />
+      </S.MainSidebar>
     </>
   );
 }

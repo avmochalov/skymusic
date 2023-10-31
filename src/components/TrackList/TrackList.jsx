@@ -1,21 +1,22 @@
 import { useDispatch, useSelector } from 'react-redux';
 import * as S from './TrackListStyles';
-import { setCurrentTrack } from '../../store/actions/creators/skymusic';
+import { crateTrackList, setCurrentTrack } from '../../store/actions/creators/skymusic';
 import { currentTrackIdSelector } from '../../store/selectors/skymusic';
 
-function TrackList() {
+function TrackList({data}) {
   const tracks = useSelector((store) => store.AudioPlayer.trackList);
   const playingStatus = useSelector((store) => store.AudioPlayer.playing);
   const currentTrackId = useSelector(currentTrackIdSelector);
   const dispatch = useDispatch();
   return (
     <S.ContentPlaylist className="content__playlist playlist">
-      {tracks.map((track) => (
+      {data.map((track) => (
         <S.PlaylistItem
           key={track.id}
           className="playlist__item"
           onClick={() => {
             dispatch(setCurrentTrack(track));
+            dispatch(crateTrackList(data));
           }}
         >
           {/* track__title-svg pulse-point */}

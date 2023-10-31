@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import * as S from './AuthStyles';
-import { registerUser, loginUser } from '../../API/user';
+import { registerUser, loginUser, getUserToken } from '../../API/user';
 import { useEffect, useState } from 'react';
 import { useUserContext } from '../../context/user';
 
@@ -30,9 +30,23 @@ export default function AuthPage({ isLoginMode }) {
           setError(error.message);
           setButtonDisableStatus(false);
         });
+      getUserToken({ email, password })
+        .then((response) => {
+          localStorage.setItem(
+            'refreshToken',
+            JSON.stringify(response.refresh),
+          );
+          localStorage.setItem(
+            'accessToken',
+            JSON.stringify(response.access),
+          );
+          navigate('/');
+        })
+        .catch((error) => {
+          setError(error.message);
+        });
     }
   };
-
   const handleRegister = async () => {
     setButtonDisableStatus(true);
     if (password !== repeatPassword) {

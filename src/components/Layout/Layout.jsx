@@ -17,37 +17,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { crateTrackList } from '../../store/actions/creators/skymusic';
 import { Outlet } from 'react-router-dom';
 
-function Layout({ isLoading, setLoadingStatus, setNewApiError }) {
+function Layout({ isLoading, }) {
   const currentTrack = useSelector((store) => store.AudioPlayer.currentTrack);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    getTrackList()
-      .then((tracks) => {
-        setLoadingStatus(false);
-        dispatch(crateTrackList(tracks));
-      })
-      .catch((error) => {
-        setNewApiError(error.message);
-      });
-  }, []);
-  console.log(Boolean(currentTrack[0]));
-  console.log(currentTrack);
   return (
     <S.Wrapper className="wrapper">
       <S.Container className="container">
         <S.Main className="main">
           <BurgerMenu />
-          <S.MainCenterblock className="main__centerblock centerblock">
-            <Search />
-            <Outlet />
-          </S.MainCenterblock>
-          <S.MainSidebar className="main__sidebar sidebar">
-            <SideBarUser />
-            {isLoading ? <SideBarPlug /> : <SideBar />}
-          </S.MainSidebar>
+          <Outlet />
         </S.Main>
-        <S.Bar className="bar">{currentTrack ? <Player /> : null}</S.Bar>
+        <S.Bar className="bar">{currentTrack.id ? <Player /> : null}</S.Bar>
         <footer className="footer"></footer>
       </S.Container>
     </S.Wrapper>

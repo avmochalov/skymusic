@@ -15,22 +15,28 @@ import * as S from './HomeStyles';
 import { getTrackList } from '../../API/track';
 import { useDispatch, useSelector } from 'react-redux';
 import { crateTrackList } from '../../store/actions/creators/skymusic';
+import { useGetTracksQuery } from '../../services/skymusic';
 
-function Home({isLoading, newApiError}) {
-  return(
+function Home() {
+  const { data, error, isLoading } = useGetTracksQuery();
+  return (
     <>
-  <S.CenterblockH2 className="centerblock__h2">Треки</S.CenterblockH2>
-  <Filter />
-  <S.CenterblockContent className="centerblock__content">
-    <TrackListHeader />
-    {newApiError ? <p>Не удалось загрузить данные</p> : null}
-    {isLoading ? (
-      <TrackListPlug />
-    ) : (
-      <TrackList />
-    )}
-  </S.CenterblockContent>
-  </>)
+      <S.MainCenterblock className="main__centerblock centerblock">
+        <Search />
+        <S.CenterblockH2 className="centerblock__h2">Треки</S.CenterblockH2>
+        <Filter />
+        <S.CenterblockContent className="centerblock__content">
+          <TrackListHeader />
+          {error ? <p>Не удалось загрузить данные</p> : null}
+          {isLoading ? <TrackListPlug /> : <TrackList data={data} />}
+        </S.CenterblockContent>
+      </S.MainCenterblock>
+      <S.MainSidebar className="main__sidebar sidebar">
+        <SideBarUser />
+        {isLoading ? <SideBarPlug /> : <SideBar />}
+      </S.MainSidebar>
+    </>
+  );
 }
 
 export default Home;
