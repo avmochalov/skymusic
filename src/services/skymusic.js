@@ -20,7 +20,18 @@ export const tracksApi = createApi({
         },
       }),
     }),
+    addLike: builder.mutation({
+        query: (id) => ({
+          url: `track/${id}/favorite/`,
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${
+              JSON.parse(localStorage.getItem('accessToken'))
+            }`,
+          },
+        }),
+      }),
   }),
 });
 
-export const { useGetFavoritesTracksQuery, useGetTracksQuery } = tracksApi;
+export const { useGetFavoritesTracksQuery, useGetTracksQuery, useAddLikeMutation } = tracksApi;

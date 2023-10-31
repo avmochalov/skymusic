@@ -1,27 +1,31 @@
 import { useDispatch, useSelector } from 'react-redux';
 import * as S from './TrackListStyles';
-import { crateTrackList, setCurrentTrack } from '../../store/actions/creators/skymusic';
+import {
+  crateTrackList,
+  setCurrentTrack,
+} from '../../store/actions/creators/skymusic';
 import { currentTrackIdSelector } from '../../store/selectors/skymusic';
+import { useAddLikeMutation } from '../../services/skymusic';
 
-function TrackList({data}) {
+function TrackList({ data }) {
   const tracks = useSelector((store) => store.AudioPlayer.trackList);
   const playingStatus = useSelector((store) => store.AudioPlayer.playing);
   const currentTrackId = useSelector(currentTrackIdSelector);
+  const [addLike, { isLoading }] = useAddLikeMutation();
   const dispatch = useDispatch();
   return (
     <S.ContentPlaylist className="content__playlist playlist">
       {data.map((track) => (
-        <S.PlaylistItem
-          key={track.id}
-          className="playlist__item"
-          onClick={() => {
-            dispatch(setCurrentTrack(track));
-            dispatch(crateTrackList(data));
-          }}
-        >
+        <S.PlaylistItem key={track.id} className="playlist__item">
           {/* track__title-svg pulse-point */}
           <S.PlaylistTrack className="playlist__track track">
-            <S.TrackTitle className="track__title">
+            <S.TrackTitle
+              className="track__title"
+              onClick={() => {
+                dispatch(setCurrentTrack(track));
+                dispatch(crateTrackList(data));
+              }}
+            >
               <S.TrackTitleImg className="track__title-image">
                 <S.TrackTitleSvg
                   className={`${
@@ -56,7 +60,13 @@ function TrackList({data}) {
               </S.TrackAlbumLink>
             </S.TrackAlbum>
             <div className="track__time">
-              <S.TrackTimeSvg className="track__time-svg" alt="time">
+              <S.TrackTimeSvg
+                className="track__time-svg"
+                alt="time"
+                onClick={() => {
+                  addLike(track.id);
+                }}
+              >
                 <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
               </S.TrackTimeSvg>
               <S.TrackTimeText className="track__time-text">
