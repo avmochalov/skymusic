@@ -17,7 +17,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { crateTrackList } from '../../store/actions/creators/skymusic';
 import { Outlet } from 'react-router-dom';
 
-function Layout({ isLoading, }) {
+function Layout() {
   const currentTrack = useSelector((store) => store.AudioPlayer.currentTrack);
   return (
     <S.Wrapper className="wrapper">

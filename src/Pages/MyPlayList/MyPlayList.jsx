@@ -6,14 +6,14 @@ import { TrackListPlug } from '../../components/TrackList/TrackListPlug';
 import { SideBarUser } from '../../components/SideBar/SideBarUser';
 
 import * as S from './MyPlayListStyles';
-import { getTrackList } from '../../API/track';
 import { useDispatch, useSelector } from 'react-redux';
-import { crateTrackList } from '../../store/actions/creators/skymusic';
+import { crateTrackList, setCurrentPage } from '../../store/actions/creators/skymusic';
 import { useGetFavoritesTracksQuery } from '../../services/skymusic';
 
 function MyPlayList({ newApiError }) {
   const { data, error, isLoading } = useGetFavoritesTracksQuery();
-  console.log(error);
+  const dispatch = useDispatch();
+  dispatch(setCurrentPage('myTracks'));
   return (
     <>
       <S.MainCenterblock className="main__centerblock centerblock">

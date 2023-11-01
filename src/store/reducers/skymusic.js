@@ -4,6 +4,7 @@ import {
   PAUSE,
   PLAY,
   PREV_TRACK,
+  SET_CURRENT_PAGE,
   SET_CURRENT_TRACK,
   SET_REPEAT_STATE,
   TOGGLE_SHUFFL,
@@ -15,6 +16,7 @@ const initialState = {
   playing: false,
   shuffled: false,
   shuffledTrackList: [],
+  currentPage: 'home',
   player: { isRepeat: false, volume: 1, currentTime: 0, duration: 0 },
 };
 
@@ -78,6 +80,13 @@ export default function playerReducer(state = initialState, action) {
       return {
         ...state,
         player:{isRepeat: isRepeat},
+      };
+    }
+    case SET_CURRENT_PAGE: {
+      const { pageType } = action.payload;
+      return {
+        ...state,
+        currentPage: pageType,
       };
     }
     default:

@@ -5,19 +5,21 @@ import {
   setCurrentTrack,
 } from '../../store/actions/creators/skymusic';
 import { currentTrackIdSelector } from '../../store/selectors/skymusic';
-import { useAddLikeMutation } from '../../services/skymusic';
+import { useAddLikeMutation, useRemoveLikeMutation } from '../../services/skymusic';
 
 function TrackList({ data }) {
   const tracks = useSelector((store) => store.AudioPlayer.trackList);
   const playingStatus = useSelector((store) => store.AudioPlayer.playing);
   const currentTrackId = useSelector(currentTrackIdSelector);
+  const pageType = useSelector((store) => store.AudioPlayer.currentPage);
   const [addLike, { isLoading }] = useAddLikeMutation();
+  const [removeLike] = useRemoveLikeMutation();
+  const userId = JSON.parse(localStorage.getItem('user')).id;
   const dispatch = useDispatch();
   return (
     <S.ContentPlaylist className="content__playlist playlist">
       {data.map((track) => (
         <S.PlaylistItem key={track.id} className="playlist__item">
-          {/* track__title-svg pulse-point */}
           <S.PlaylistTrack className="playlist__track track">
             <S.TrackTitle
               className="track__title"
@@ -64,10 +66,19 @@ function TrackList({ data }) {
                 className="track__time-svg"
                 alt="time"
                 onClick={() => {
-                  addLike(track.id);
+                  pageType === 'myTracks' ? removeLike(track.id) :
+                  track.stared_user.some((user) => user['id'] === userId)
+                    ? removeLike(track.id)
+                    : addLike(track.id);
                 }}
               >
-                <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+                {pageType === 'myTracks' ? (
+                  <use xlinkHref="img/icon/sprite.svg#icon-activ-like"></use>
+                ) : track.stared_user.some((user) => user['id'] === userId) ? (
+                  <use xlinkHref="img/icon/sprite.svg#icon-activ-like"></use>
+                ) : (
+                  <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+                )}
               </S.TrackTimeSvg>
               <S.TrackTimeText className="track__time-text">
                 {track.duration_in_seconds}

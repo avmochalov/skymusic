@@ -14,11 +14,13 @@ import { useEffect, useState } from 'react';
 import * as S from './HomeStyles';
 import { getTrackList } from '../../API/track';
 import { useDispatch, useSelector } from 'react-redux';
-import { crateTrackList } from '../../store/actions/creators/skymusic';
+import { crateTrackList, setCurrentPage } from '../../store/actions/creators/skymusic';
 import { useGetTracksQuery } from '../../services/skymusic';
 
 function Home() {
   const { data, error, isLoading } = useGetTracksQuery();
+  const dispatch = useDispatch();
+  dispatch(setCurrentPage('home'));
   return (
     <>
       <S.MainCenterblock className="main__centerblock centerblock">

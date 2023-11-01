@@ -9,3 +9,4 @@ export const SET_REPEAT_STATE = "SET_REPEAT_STATE";
 export const SET_VOLUME = "SET_VOLUME";
 export const SET_CURRENT_TIME = "SET_CURRENT_TIME";
 export const SET_DURATION = "SET_DURATION";
+export const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
