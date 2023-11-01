@@ -5,10 +5,10 @@ import { GenreFilterMenu } from './GenreFilterMenu';
 import * as S from'./FilterStyles'
 import { useSelector } from 'react-redux';
 
-function Filter() {
+function Filter({tracks}) {
   const [whatVisible, setVisible] = useState(null);
   const toggleVisibility = (name) => setVisible(name);
-  const tracks = useSelector((store) => store.AudioPlayer.trackList);
+  console.log(tracks)
   return (
     <S.CenterblockFilter className="centerblock__filter filter">
       <S.FilterTitle className="filter__title">Искать по:</S.FilterTitle>

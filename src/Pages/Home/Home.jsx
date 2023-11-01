@@ -26,7 +26,7 @@ function Home() {
       <S.MainCenterblock className="main__centerblock centerblock">
         <Search />
         <S.CenterblockH2 className="centerblock__h2">Треки</S.CenterblockH2>
-        <Filter />
+        <Filter tracks ={data}/>
         <S.CenterblockContent className="centerblock__content">
           <TrackListHeader />
           {error ? <p>Не удалось загрузить данные</p> : null}
