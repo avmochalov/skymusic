@@ -8,7 +8,6 @@ import { currentTrackIdSelector } from '../../store/selectors/skymusic';
 import { useAddLikeMutation, useRemoveLikeMutation } from '../../services/skymusic';
 
 function TrackList({ data }) {
-  const tracks = useSelector((store) => store.AudioPlayer.trackList);
   const playingStatus = useSelector((store) => store.AudioPlayer.playing);
   const currentTrackId = useSelector(currentTrackIdSelector);
   const pageType = useSelector((store) => store.AudioPlayer.currentPage);

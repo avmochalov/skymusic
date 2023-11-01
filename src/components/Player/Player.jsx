@@ -5,7 +5,6 @@ import {
   pauseTrack,
   playTrack,
   prevTrack,
-  setCurrentTrack,
   setRepeatState,
   shuffleTracks,
 } from '../../store/actions/creators/skymusic';

@@ -13,8 +13,8 @@ import { useEffect, useState } from 'react';
 
 import * as S from './HomeStyles';
 import { getTrackList } from '../../API/track';
-import { useDispatch, useSelector } from 'react-redux';
-import { crateTrackList, setCurrentPage } from '../../store/actions/creators/skymusic';
+import { useDispatch } from 'react-redux';
+import {setCurrentPage } from '../../store/actions/creators/skymusic';
 import { useGetTracksQuery } from '../../services/skymusic';
 
 function Home() {
