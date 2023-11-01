@@ -2,7 +2,6 @@
 import * as S from './FilterStyles';
 
 function AuthorFilterMenu({ toggleVisibility, whatVisible, tracks }) {
-  console.log(tracks)
   return (
     <>
       <S.FilterButton

@@ -8,7 +8,6 @@ import { useSelector } from 'react-redux';
 function Filter({tracks}) {
   const [whatVisible, setVisible] = useState(null);
   const toggleVisibility = (name) => setVisible(name);
-  console.log(tracks)
   return (
     <S.CenterblockFilter className="centerblock__filter filter">
       <S.FilterTitle className="filter__title">Искать по:</S.FilterTitle>
