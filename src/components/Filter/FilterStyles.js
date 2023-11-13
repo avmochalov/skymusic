@@ -85,5 +85,5 @@ export const FilterMenuRight = styled.div`
   overflow: scroll;
   position: absolute;
   top: 50px;
-  left: 400px;
+  left: 250px;
 `;

@@ -23,7 +23,7 @@ function Home() {
       <S.MainCenterblock className="main__centerblock centerblock">
         <Search setSearchValue={setSearchValue} />
         <S.CenterblockH2 className="centerblock__h2">Треки</S.CenterblockH2>
-        <Filter tracks={data} />
+        {isLoading ? null : <Filter data={data} />}
         <S.CenterblockContent className="centerblock__content">
           <TrackListHeader />
           {error ? <p>Не удалось загрузить данные</p> : null}

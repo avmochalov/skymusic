@@ -1,5 +1,11 @@
+import { useEffect, useState } from 'react';
 import * as S from './FilterStyles';
 function GenreFilterMenu({ toggleVisibility, whatVisible, tracks }) {
+  const [genreArray, setGenreArray] = useState(null);
+  useEffect(() => {
+    const uniqueGenre = new Set(tracks.map((track) => track.genre));
+    setGenreArray(Array.from(uniqueGenre));
+  }, []);
   return (
     <>
       <S.FilterButton
@@ -19,9 +25,9 @@ function GenreFilterMenu({ toggleVisibility, whatVisible, tracks }) {
       </S.FilterButton>
       {whatVisible === 'genre' && (
         <S.FilterMenuRight className="filter__menu filter__menu_right">
-          {tracks.map((track) => (
-            <S.FilterMenuItem key={track.id} className="filter__menu_item">
-              {track.genre}
+          {genreArray.map((genre, index) => (
+            <S.FilterMenuItem key={index} className="filter__menu_item">
+              {genre}
             </S.FilterMenuItem>
           ))}
         </S.FilterMenuRight>

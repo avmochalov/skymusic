@@ -5,7 +5,7 @@ import { GenreFilterMenu } from './GenreFilterMenu';
 import * as S from'./FilterStyles'
 import { useSelector } from 'react-redux';
 
-function Filter({tracks}) {
+function Filter({data}) {
   const [whatVisible, setVisible] = useState(null);
   const toggleVisibility = (name) => setVisible(name);
   return (
@@ -15,17 +15,17 @@ function Filter({tracks}) {
       <AuthorFilterMenu
         toggleVisibility={toggleVisibility}
         whatVisible={whatVisible}
-        tracks={tracks}
+        tracks={data}
       />
-      <YearFilterMenu
+      {/* <YearFilterMenu
         toggleVisibility={toggleVisibility}
         whatVisible={whatVisible}
         tracks={tracks}
-      />
+      /> */}
       <GenreFilterMenu
         toggleVisibility={toggleVisibility}
         whatVisible={whatVisible}
-        tracks={tracks}
+        tracks={data}
       />
     </S.CenterblockFilter>
   );
