@@ -148,7 +148,7 @@ function Player() {
                 alt="prev"
                 onClick={prevTrackToggle}
               >
-                <use xlinkHref="img/icon/sprite.svg#icon-prev"></use>
+                <use xlinkHref="/img/icon/sprite.svg#icon-prev"></use>
               </S.PlayerBtnPrevSvg>
             </S.PlayerBtnPrev>
             <S.PlayerBtnPlay className="player__btn-play _btn">
@@ -158,9 +158,9 @@ function Player() {
                 onClick={playClick}
               >
                 {playingStatus ? (
-                  <use xlinkHref="img/icon/sprite.svg#icon-pause"></use>
+                  <use xlinkHref="/img/icon/sprite.svg#icon-pause"></use>
                 ) : (
-                  <use xlinkHref="img/icon/sprite.svg#icon-play"></use>
+                  <use xlinkHref="/img/icon/sprite.svg#icon-play"></use>
                 )}
               </S.PlayerBtnPlaySvg>
             </S.PlayerBtnPlay>
@@ -170,7 +170,7 @@ function Player() {
                 alt="next"
                 onClick={nextTrackToggle}
               >
-                <use xlinkHref="img/icon/sprite.svg#icon-next"></use>
+                <use xlinkHref="/img/icon/sprite.svg#icon-next"></use>
               </S.PlayerBtnNextSvg>
             </S.PlayerBtnNext>
             <S.PlayerBtnRepeat
@@ -182,7 +182,7 @@ function Player() {
                 alt="repeat"
                 $isRepeat={isRepeat}
               >
-                <use xlinkHref="img/icon/sprite.svg#icon-repeat"></use>
+                <use xlinkHref="/img/icon/sprite.svg#icon-repeat"></use>
               </S.PlayerBtnRepeatSvg>
             </S.PlayerBtnRepeat>
             <S.PlayerBtnShuffle className="player__btn-shuffle _btn-icon">
@@ -192,7 +192,7 @@ function Player() {
                 onClick={shuffleToggle}
                 $shuffleStatus={shuffleStatus}
               >
-                <use xlinkHref="img/icon/sprite.svg#icon-shuffle"></use>
+                <use xlinkHref="/img/icon/sprite.svg#icon-shuffle"></use>
               </S.PlayerBtnShuffleSvg>
             </S.PlayerBtnShuffle>
           </S.PlayerControls>
@@ -201,7 +201,7 @@ function Player() {
             <S.TrackPlayContain className="track-play__contain">
               <S.TrackPlayImg className="track-play__image">
                 <S.TrackPlaySvg className="track-play__svg" alt="music">
-                  <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+                  <use xlinkHref="/img/icon/sprite.svg#icon-note"></use>
                 </S.TrackPlaySvg>
               </S.TrackPlayImg>
               <S.TrackPlayAuthor className="track-play__author">
@@ -228,7 +228,7 @@ function Player() {
                   className="track-play__like-svg"
                   alt="like"
                 >
-                  <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+                  <use xlinkHref="/img/icon/sprite.svg#icon-like"></use>
                 </S.TrackPlaytracklikeSvg>
               </S.TrackPlaytrackLike>
               <S.TrackPlaytrackDislike className="track-play__dislike _btn-icon">
@@ -236,7 +236,7 @@ function Player() {
                   className="track-play__dislike-svg"
                   alt="dislike"
                 >
-                  <use xlinkHref="img/icon/sprite.svg#icon-dislike"></use>
+                  <use xlinkHref="/img/icon/sprite.svg#icon-dislike"></use>
                 </S.TrackPlaytrackDislikeSvg>
               </S.TrackPlaytrackDislike>
             </S.TrackPlaytrackLikDdis>
@@ -246,7 +246,7 @@ function Player() {
           <S.VolumeContent className="volume__content">
             <S.VolumeImg className="volume__image">
               <S.VolumeSvg className="volume__svg" alt="volume">
-                <use xlinkHref="img/icon/sprite.svg#icon-volume"></use>
+                <use xlinkHref="/img/icon/sprite.svg#icon-volume"></use>
               </S.VolumeSvg>
             </S.VolumeImg>
             <S.VolumeProgress className="volume__progress _btn">

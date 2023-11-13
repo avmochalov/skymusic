@@ -16,6 +16,7 @@ function Home() {
   const { data, error, isLoading } = useGetTracksQuery();
   const dispatch = useDispatch();
   dispatch(setCurrentPage('home'));
+  console.log(data)
   return (
     <>
       <S.MainCenterblock className="main__centerblock centerblock">

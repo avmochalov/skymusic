@@ -37,9 +37,9 @@ function TrackList({ data }) {
                   alt="music"
                 >
                   {track.id === currentTrackId ? (
-                    <use xlinkHref="img/icon/sprite.svg#pulse_point"></use>
+                    <use xlinkHref="/img/icon/sprite.svg#pulse_point"></use>
                   ) : (
-                    <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+                    <use xlinkHref="/img/icon/sprite.svg#icon-note"></use>
                   )}
                 </S.TrackTitleSvg>
               </S.TrackTitleImg>
@@ -72,11 +72,11 @@ function TrackList({ data }) {
                 }}
               >
                 {pageType === 'myTracks' ? (
-                  <use xlinkHref="img/icon/sprite.svg#icon-activ-like"></use>
+                  <use xlinkHref="/img/icon/sprite.svg#icon-activ-like"></use>
                 ) : track.stared_user.some((user) => user['id'] === userId) ? (
-                  <use xlinkHref="img/icon/sprite.svg#icon-activ-like"></use>
+                  <use xlinkHref="/img/icon/sprite.svg#icon-activ-like"></use>
                 ) : (
-                  <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+                  <use xlinkHref="/img/icon/sprite.svg#icon-like"></use>
                 )}
               </S.TrackTimeSvg>
               <S.TrackTimeText className="track__time-text">
