@@ -16,7 +16,7 @@ function BurgerList({ isVisible }) {
               </S.MenuLink>
             </S.MenuItem>
           </NavLink>
-          <NavLink to="/myplaylist">
+          <NavLink to="/favorites">
             <S.MenuItem className="menu__item">
               <S.MenuLink href="http://" className="menu__link">
                 Мой плейлист

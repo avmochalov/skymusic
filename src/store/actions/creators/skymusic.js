@@ -1,4 +1,4 @@
-import { CREATE_TRACK_LIST, NEXT_TRACK, PAUSE, PLAY, PREV_TRACK, SET_CURRENT_TRACK, TOGGLE_SHUFFL } from '../types/skymusic';
+import { CREATE_TRACK_LIST, NEXT_TRACK, PAUSE, PLAY, PREV_TRACK, SET_CURRENT_TRACK, SET_REPEAT_STATE, TOGGLE_SHUFFL, SET_CURRENT_PAGE } from '../types/skymusic';
 
 export const crateTrackList = ( trackList ) => ({
   type: CREATE_TRACK_LIST,
@@ -44,5 +44,19 @@ export const shuffleTracks = ( isShuffled, shuffledTrackList ) => ({
   type: TOGGLE_SHUFFL,
   payload: {
     isShuffled, shuffledTrackList,
+  },
+});
+
+export const setRepeatState = ( isRepeat ) => ({
+  type: SET_REPEAT_STATE,
+  payload: {
+    isRepeat,
+  },
+});
+
+export const setCurrentPage = ( pageType ) => ({
+  type: SET_CURRENT_PAGE,
+  payload: {
+    pageType,
   },
 });

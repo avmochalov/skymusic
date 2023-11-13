@@ -1,28 +1,32 @@
 import { useDispatch, useSelector } from 'react-redux';
 import * as S from './TrackListStyles';
-import { setCurrentTrack } from '../../store/actions/creators/skymusic';
+import {
+  crateTrackList,
+  setCurrentTrack,
+} from '../../store/actions/creators/skymusic';
 import { currentTrackIdSelector } from '../../store/selectors/skymusic';
+import { useAddLikeMutation, useRemoveLikeMutation } from '../../services/skymusic';
 
-function TrackList({ setActivTrack, setIsPlaying }) {
-  const tracks = useSelector((store) => store.AudioPlayer.trackList);
+function TrackList({ data }) {
   const playingStatus = useSelector((store) => store.AudioPlayer.playing);
   const currentTrackId = useSelector(currentTrackIdSelector);
+  const pageType = useSelector((store) => store.AudioPlayer.currentPage);
+  const [addLike, { isLoading }] = useAddLikeMutation();
+  const [removeLike] = useRemoveLikeMutation();
+  const userId = JSON.parse(localStorage.getItem('user')).id;
   const dispatch = useDispatch();
   return (
     <S.ContentPlaylist className="content__playlist playlist">
-      {tracks.map((track) => (
-        <S.PlaylistItem
-          key={track.id}
-          className="playlist__item"
-          onClick={() => {
-            dispatch(setCurrentTrack(track));
-            setActivTrack(track);
-            setIsPlaying(true);
-          }}
-        >
-          {/* track__title-svg pulse-point */}
+      {data.map((track) => (
+        <S.PlaylistItem key={track.id} className="playlist__item">
           <S.PlaylistTrack className="playlist__track track">
-            <S.TrackTitle className="track__title">
+            <S.TrackTitle
+              className="track__title"
+              onClick={() => {
+                dispatch(setCurrentTrack(track));
+                dispatch(crateTrackList(data));
+              }}
+            >
               <S.TrackTitleImg className="track__title-image">
                 <S.TrackTitleSvg
                   className={`${
@@ -57,8 +61,23 @@ function TrackList({ setActivTrack, setIsPlaying }) {
               </S.TrackAlbumLink>
             </S.TrackAlbum>
             <div className="track__time">
-              <S.TrackTimeSvg className="track__time-svg" alt="time">
-                <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+              <S.TrackTimeSvg
+                className="track__time-svg"
+                alt="time"
+                onClick={() => {
+                  pageType === 'myTracks' ? removeLike(track.id) :
+                  track.stared_user.some((user) => user['id'] === userId)
+                    ? removeLike(track.id)
+                    : addLike(track.id);
+                }}
+              >
+                {pageType === 'myTracks' ? (
+                  <use xlinkHref="img/icon/sprite.svg#icon-activ-like"></use>
+                ) : track.stared_user.some((user) => user['id'] === userId) ? (
+                  <use xlinkHref="img/icon/sprite.svg#icon-activ-like"></use>
+                ) : (
+                  <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+                )}
               </S.TrackTimeSvg>
               <S.TrackTimeText className="track__time-text">
                 {track.duration_in_seconds}

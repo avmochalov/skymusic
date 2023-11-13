@@ -4,7 +4,6 @@ import { NavLink } from 'react-router-dom';
 
 function SideBarUser() {
   const {currentUser} = useUserContext();
-  console.log(currentUser);
   const logOut = () => {
     localStorage.clear();
   };
