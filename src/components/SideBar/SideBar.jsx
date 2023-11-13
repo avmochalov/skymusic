@@ -9,7 +9,7 @@ function SideBar() {
             <S.SidebarLink className="sidebar__link" href="#">
               <S.SidebarImg
                 className="sidebar__img"
-                src="img/playlist01.png"
+                src="img/playlist03.png"
                 alt="day's playlist"
               ></S.SidebarImg>
             </S.SidebarLink>
@@ -31,7 +31,7 @@ function SideBar() {
             <S.SidebarLink className="sidebar__link" href="#">
               <S.SidebarImg
                 className="sidebar__img"
-                src="img/playlist03.png"
+                src="img/playlist01.png"
                 alt="day's playlist"
               ></S.SidebarImg>
             </S.SidebarLink>
