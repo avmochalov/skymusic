@@ -5,9 +5,12 @@ import {
   setCurrentTrack,
 } from '../../store/actions/creators/skymusic';
 import { currentTrackIdSelector } from '../../store/selectors/skymusic';
-import { useAddLikeMutation, useRemoveLikeMutation } from '../../services/skymusic';
+import {
+  useAddLikeMutation,
+  useRemoveLikeMutation,
+} from '../../services/skymusic';
 
-function TrackList({ data }) {
+function TrackList({ data, searchValue }) {
   const playingStatus = useSelector((store) => store.AudioPlayer.playing);
   const currentTrackId = useSelector(currentTrackIdSelector);
   const pageType = useSelector((store) => store.AudioPlayer.currentPage);
@@ -15,9 +18,12 @@ function TrackList({ data }) {
   const [removeLike] = useRemoveLikeMutation();
   const userId = JSON.parse(localStorage.getItem('user')).id;
   const dispatch = useDispatch();
+  const filteredTracks = data.filter((track) => {
+    return track.name.toLowerCase().includes(searchValue.toLowerCase());
+  });
   return (
     <S.ContentPlaylist className="content__playlist playlist">
-      {data.map((track) => (
+      {filteredTracks.map((track) => (
         <S.PlaylistItem key={track.id} className="playlist__item">
           <S.PlaylistTrack className="playlist__track track">
             <S.TrackTitle
@@ -65,8 +71,9 @@ function TrackList({ data }) {
                 className="track__time-svg"
                 alt="time"
                 onClick={() => {
-                  pageType === 'myTracks' ? removeLike(track.id) :
-                  track.stared_user.some((user) => user['id'] === userId)
+                  pageType === 'myTracks'
+                    ? removeLike(track.id)
+                    : track.stared_user.some((user) => user['id'] === userId)
                     ? removeLike(track.id)
                     : addLike(track.id);
                 }}

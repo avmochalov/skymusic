@@ -9,6 +9,7 @@ import { useGetTracksQuery } from '../../services/skymusic';
 import { useParams } from 'react-router-dom';
 import * as S from './CollectionsStyles';
 const Collections = () => {
+  const [searchValue, setSearchValue] = useState('');
   const { data, error, isLoading } = useGetTracksQuery();
   const params = useParams();
   let listName = '';
@@ -35,14 +36,14 @@ const Collections = () => {
   return (
     <>
       <S.MainCenterblock className="main__centerblock centerblock">
-        <Search />
+        <Search setSearchValue={setSearchValue}/>
         <S.CenterblockH2 className="centerblock__h2">
           {listName}
         </S.CenterblockH2>
         <S.CenterblockContent className="centerblock__content">
           <TrackListHeader />
           {error ? <p>Не удалось загрузить данные</p> : null}
-          {isLoading ? <TrackListPlug /> : <TrackList data={collectionsData} />}
+          {isLoading ? <TrackListPlug /> : <TrackList data={collectionsData} searchValue={searchValue}/>}
         </S.CenterblockContent>
       </S.MainCenterblock>
       <S.MainSidebar className="main__sidebar sidebar">
