@@ -3,13 +3,30 @@ import { useState } from 'react';
 import * as S from './FilterStyles';
 import { useEffect } from 'react';
 
-function AuthorFilterMenu({ toggleVisibility, whatVisible, tracks }) {
+function AuthorFilterMenu({
+  toggleVisibility,
+  whatVisible,
+  tracks,
+  setAuthorFilterArray,
+  authorFilterArray,
+}) {
   const [authorArray, setAuthorArray] = useState(null);
   useEffect(() => {
     const uniqueAuthors = new Set(tracks.map((track) => track.author));
     setAuthorArray(Array.from(uniqueAuthors));
   }, []);
   console.log(authorArray);
+  // console.log(authorFilterArray);
+  const filterToggle = (author) => {
+    if (authorFilterArray.includes(author)) {
+      setAuthorFilterArray(
+        [...authorFilterArray].filter((el) => el !== author),
+      );
+    } else {
+      setAuthorFilterArray([...authorFilterArray, author]);
+    }
+  };
+
   return (
     <>
       <S.FilterButton
@@ -30,7 +47,14 @@ function AuthorFilterMenu({ toggleVisibility, whatVisible, tracks }) {
       {whatVisible === 'author' && (
         <S.FilterMenuLeft className="filter__menu filter__menu_left">
           {authorArray.map((author, index) => (
-            <S.FilterMenuItem key={index} className="filter__menu_item">
+            <S.FilterMenuItem
+              key={index}
+              className={"filter__menu_item" + `${authorFilterArray.includes(author) && ' filter__button_clicked'}`}
+              onClick={(e) => {
+                e.stopPropagation();
+                filterToggle(author);
+              }}
+            >
               {author}
             </S.FilterMenuItem>
           ))}

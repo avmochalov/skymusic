@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Search } from '../../components/Search/Search';
 import { Filter } from '../../components/Filter/Filter';
 import { TrackListHeader } from '../../components/TrackList/TrackListHeader';
@@ -11,6 +11,7 @@ import * as S from './CollectionsStyles';
 const Collections = () => {
   const [searchValue, setSearchValue] = useState('');
   const { data, error, isLoading } = useGetTracksQuery();
+  const [filteredTracks, setFilteredTracks] = useState([]);
   const params = useParams();
   let listName = '';
   let collectionsData = [];
@@ -32,18 +33,27 @@ const Collections = () => {
         break;
     }
   }
-  console.log(collectionsData)
+  useEffect(() => {
+    console.log(collectionsData);
+    setFilteredTracks(
+      collectionsData.filter((track) => {
+        return track.name.toLowerCase().includes(searchValue.toLowerCase());
+      }),
+    );
+    console.log(filteredTracks);
+  }, [searchValue, isLoading]);
+
   return (
     <>
       <S.MainCenterblock className="main__centerblock centerblock">
-        <Search setSearchValue={setSearchValue}/>
+        <Search setSearchValue={setSearchValue} />
         <S.CenterblockH2 className="centerblock__h2">
           {listName}
         </S.CenterblockH2>
         <S.CenterblockContent className="centerblock__content">
           <TrackListHeader />
           {error ? <p>Не удалось загрузить данные</p> : null}
-          {isLoading ? <TrackListPlug /> : <TrackList data={collectionsData} searchValue={searchValue}/>}
+          {isLoading ? <TrackListPlug /> : <TrackList data={filteredTracks} />}
         </S.CenterblockContent>
       </S.MainCenterblock>
       <S.MainSidebar className="main__sidebar sidebar">

@@ -106,14 +106,14 @@ export const GlobalStyle = createGlobalStyle`
   
   // =================== main ====================//
   
-  // .filter {
-  //   &__button {
-  //     &_clicked {
-  //       border-color: #d9b6ff;
-  //       color: #d9b6ff;
-  //     }
-  //   }
-  // }
+   .filter {
+     &__button {
+     &_clicked {
+       border-color: #d9b6ff;
+       color: #d9b6ff;
+     }
+   }
+ }
   
   
 `;

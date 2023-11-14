@@ -9,8 +9,9 @@ import {
   useAddLikeMutation,
   useRemoveLikeMutation,
 } from '../../services/skymusic';
+import { useEffect, useState } from 'react';
 
-function TrackList({ data, searchValue }) {
+function TrackList({ data }) {
   const playingStatus = useSelector((store) => store.AudioPlayer.playing);
   const currentTrackId = useSelector(currentTrackIdSelector);
   const pageType = useSelector((store) => store.AudioPlayer.currentPage);
@@ -18,12 +19,10 @@ function TrackList({ data, searchValue }) {
   const [removeLike] = useRemoveLikeMutation();
   const userId = JSON.parse(localStorage.getItem('user')).id;
   const dispatch = useDispatch();
-  const filteredTracks = data.filter((track) => {
-    return track.name.toLowerCase().includes(searchValue.toLowerCase());
-  });
+
   return (
     <S.ContentPlaylist className="content__playlist playlist">
-      {filteredTracks.map((track) => (
+      {data.map((track) => (
         <S.PlaylistItem key={track.id} className="playlist__item">
           <S.PlaylistTrack className="playlist__track track">
             <S.TrackTitle
