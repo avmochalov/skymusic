@@ -27,14 +27,14 @@ function Home() {
     setFilteredTracks(data);
   }, []);
 
-  // useEffect(() => {
-  //   console.log('Я работаю');
-  //   setFilteredTracks(
-  //     data.filter((track) => {
-  //       return track.name.toLowerCase().includes(searchValue.toLowerCase());
-  //     }),
-  //   );
-  // }, [searchValue]);
+  useEffect(() => {
+    console.log('Я работаю');
+    setFilteredTracks(
+      data.filter((track) => {
+        return track.name.toLowerCase().includes(searchValue.toLowerCase());
+      }),
+    );
+  }, [searchValue, isLoading]);
 
   useEffect(() => {
 
@@ -48,7 +48,7 @@ function Home() {
         <S.CenterblockContent className="centerblock__content">
           <TrackListHeader />
           {error ? <p>Не удалось загрузить данные</p> : null}
-          {isLoading ? <TrackListPlug /> : <TrackList data={data} searchValue={searchValue} />}
+          {isLoading ? <TrackListPlug /> : <TrackList data={filteredTracks}/>}
         </S.CenterblockContent>
       </S.MainCenterblock>
       <S.MainSidebar className="main__sidebar sidebar">
