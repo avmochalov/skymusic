@@ -44,12 +44,23 @@ function AuthorFilterMenu({
       >
         исполнителю
       </S.FilterButton>
+      {authorFilterArray.length > 0 && (
+        <div className="filter_point">
+          <p className="filter_point__text">{authorFilterArray.length}</p>{' '}
+        </div>
+      )}
       {whatVisible === 'author' && (
         <S.FilterMenuLeft className="filter__menu filter__menu_left">
           {authorArray.map((author, index) => (
             <S.FilterMenuItem
               key={index}
-              className={"filter__menu_item" + `${authorFilterArray.includes(author) && ' filter__button_clicked'}`}
+              className={
+                'filter__menu_item' +
+                `${
+                  authorFilterArray.includes(author) &&
+                  ' filter__button_clicked'
+                }`
+              }
               onClick={(e) => {
                 e.stopPropagation();
                 filterToggle(author);
