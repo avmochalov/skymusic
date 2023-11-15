@@ -41,7 +41,7 @@ const Collections = () => {
       }),
     );
     console.log(filteredTracks);
-  }, [searchValue, isLoading]);
+  }, [searchValue, isLoading, data]);
 
   return (
     <>

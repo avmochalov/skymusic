@@ -68,7 +68,7 @@ function Home() {
       }
       setFilteredTracks(filterByAuthorAndGenreAndSearchAndSort);
     }
-  }, [isLoading, searchValue, authorFilterArray, genreFilterArray, yearSortValue]);
+  }, [isLoading, searchValue, authorFilterArray, genreFilterArray, yearSortValue, data]);
 
   return (
     <>

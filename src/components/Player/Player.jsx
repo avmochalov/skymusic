@@ -10,6 +10,7 @@ import {
 } from '../../store/actions/creators/skymusic';
 import { useDispatch, useSelector } from 'react-redux';
 import { currentTrackIdSelector } from '../../store/selectors/skymusic';
+import { useAddLikeMutation, useRemoveLikeMutation } from '../../services/skymusic';
 
 function Player() {
   const [volume, setVolume] = useState(1);
@@ -22,6 +23,8 @@ function Player() {
   const playingStatus = useSelector((store) => store.AudioPlayer.playing);
   const shuffleStatus = useSelector((store) => store.AudioPlayer.shuffled);
   const audioComponentRef = useRef(null);
+  const [addLike, { isLoading }] = useAddLikeMutation();
+  const [removeLike] = useRemoveLikeMutation();
   const getCurrentTrackList = () => {
     if (shuffleStatus === false) {
       return tracks;
@@ -223,7 +226,7 @@ function Player() {
             </S.TrackPlayContain>
 
             <S.TrackPlaytrackLikDdis className="track-play__like-dis">
-              <S.TrackPlaytrackLike className="track-play__like _btn-icon">
+              <S.TrackPlaytrackLike className="track-play__like _btn-icon" onClick={()=> {addLike(currentTrack.id)}}>
                 <S.TrackPlaytracklikeSvg
                   className="track-play__like-svg"
                   alt="like"
@@ -231,7 +234,7 @@ function Player() {
                   <use xlinkHref="/img/icon/sprite.svg#icon-like"></use>
                 </S.TrackPlaytracklikeSvg>
               </S.TrackPlaytrackLike>
-              <S.TrackPlaytrackDislike className="track-play__dislike _btn-icon">
+              <S.TrackPlaytrackDislike className="track-play__dislike _btn-icon" onClick={()=> {removeLike(currentTrack.id)}}>
                 <S.TrackPlaytrackDislikeSvg
                   className="track-play__dislike-svg"
                   alt="dislike"
