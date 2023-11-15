@@ -22,14 +22,31 @@ function Home() {
   dispatch(setCurrentPage('home'));
   const [filteredTracks, setFilteredTracks] = useState([]);
   useEffect(() => {
-    isLoading
-      ? null
-      : setFilteredTracks(
-          data.filter((track) => {
-            return track.name.toLowerCase().includes(searchValue.toLowerCase());
-          }),
-        );
-  }, [isLoading, searchValue]);
+    if (isLoading) {
+      return;
+    } else {
+      let filterByAuthor = [];
+      let filterByAuthorAndGenre = [];
+      let filterByAuthorAndGenreAndSearch = [];
+      console.log(authorFilterArray);
+      console.log(authorFilterArray > 0);
+      authorFilterArray.length > 0
+        ? (filterByAuthor = data.filter((el) =>
+            authorFilterArray.includes(el.author),
+          ))
+        : (filterByAuthor = data);
+      genreFilterArray.length > 0
+        ? (filterByAuthorAndGenre = filterByAuthor.filter((el) =>
+            genreFilterArray.includes(el.genre),
+          ))
+        : (filterByAuthorAndGenre = filterByAuthor);
+      filterByAuthorAndGenreAndSearch = filterByAuthorAndGenre.filter((el) => {
+        return el.name.toLowerCase().includes(searchValue.toLowerCase());
+      });
+      console.log(filterByAuthor);
+      setFilteredTracks(filterByAuthorAndGenreAndSearch);
+    }
+  }, [isLoading, searchValue, authorFilterArray, genreFilterArray]);
 
   console.log(data);
   return (
