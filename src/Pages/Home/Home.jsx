@@ -44,11 +44,15 @@ function Home() {
         return el.name.toLowerCase().includes(searchValue.toLowerCase());
       });
       console.log(filterByAuthor);
-      setFilteredTracks(filterByAuthorAndGenreAndSearch);
+      setFilteredTracks(
+        filterByAuthorAndGenreAndSearch
+      );
     }
   }, [isLoading, searchValue, authorFilterArray, genreFilterArray]);
 
   console.log(data);
+console.log(filteredTracks.length > 0)
+console.log(filteredTracks.length)
   return (
     <>
       <S.MainCenterblock className="main__centerblock centerblock">
@@ -66,7 +70,13 @@ function Home() {
         <S.CenterblockContent className="centerblock__content">
           <TrackListHeader />
           {error ? <p>Не удалось загрузить данные</p> : null}
-          {isLoading ? <TrackListPlug /> : <TrackList data={filteredTracks} />}
+          {isLoading ? (
+            <TrackListPlug />
+          ) :  filteredTracks.length > 0 ? (
+            <TrackList data={filteredTracks} />
+          ) : (
+            <p>Треки не найдены</p>
+          )}
         </S.CenterblockContent>
       </S.MainCenterblock>
       <S.MainSidebar className="main__sidebar sidebar">
