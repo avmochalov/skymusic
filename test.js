@@ -1,15 +1,5 @@
-const tracks = ['one', 'two', 'tree', 'four', 'five', 'one', 'four'];
-const filterArr = ['one', 'four'];
-let targetArray = [];
-if (filterArr.length > 0) {
-  targetArray = tracks.filter((el) => filterArr.includes(el));
-} else {
-  targetArray = tracks;
-}
-// const targetArray = tracks.filter((el) => filterArr.includes(el));
-const searchValue = '';
-const test = tracks.filter((el) => {
-  el.includes(searchValue);
+const tracks = ["2005-06-11", "2003-06-11", "2006-06-11", "2005-06-11"];
+const result = tracks.sort(function(a,b){
+  return  new Date(b)- new Date(a);
 });
-console.log(targetArray);
-console.log(test);
+console.log(result)

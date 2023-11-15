@@ -19,8 +19,10 @@ function Home() {
   const [searchValue, setSearchValue] = useState('');
   const [authorFilterArray, setAuthorFilterArray] = useState([]);
   const [genreFilterArray, setGenreFilterArray] = useState([]);
+  const [yearSortValue, setYearSortValue] = useState('base');
   dispatch(setCurrentPage('home'));
   const [filteredTracks, setFilteredTracks] = useState([]);
+  console.log(yearSortValue);
   useEffect(() => {
     if (isLoading) {
       return;
@@ -28,6 +30,7 @@ function Home() {
       let filterByAuthor = [];
       let filterByAuthorAndGenre = [];
       let filterByAuthorAndGenreAndSearch = [];
+      let filterByAuthorAndGenreAndSearchAndSort = [];
       console.log(authorFilterArray);
       console.log(authorFilterArray > 0);
       authorFilterArray.length > 0
@@ -43,16 +46,30 @@ function Home() {
       filterByAuthorAndGenreAndSearch = filterByAuthorAndGenre.filter((el) => {
         return el.name.toLowerCase().includes(searchValue.toLowerCase());
       });
-      console.log(filterByAuthor);
-      setFilteredTracks(
-        filterByAuthorAndGenreAndSearch
-      );
+      switch (yearSortValue) {
+        case 'base':
+          filterByAuthorAndGenreAndSearchAndSort =
+            filterByAuthorAndGenreAndSearch;
+          break;
+        case 'new':
+          filterByAuthorAndGenreAndSearchAndSort =
+            filterByAuthorAndGenreAndSearch.sort(function (a, b) {
+              return new Date(b.release_date) - new Date(a.release_date);
+            });
+          break;
+        case 'old':
+          filterByAuthorAndGenreAndSearchAndSort =
+            filterByAuthorAndGenreAndSearch.sort(function (a, b) {
+              return new Date(a.release_date) - new Date(b.release_date);
+            });
+          break;
+        default:
+          break;
+      }
+      setFilteredTracks(filterByAuthorAndGenreAndSearchAndSort);
     }
-  }, [isLoading, searchValue, authorFilterArray, genreFilterArray]);
+  }, [isLoading, searchValue, authorFilterArray, genreFilterArray, yearSortValue]);
 
-  console.log(data);
-console.log(filteredTracks.length > 0)
-console.log(filteredTracks.length)
   return (
     <>
       <S.MainCenterblock className="main__centerblock centerblock">
@@ -65,6 +82,8 @@ console.log(filteredTracks.length)
             setGenreFilterArray={setGenreFilterArray}
             authorFilterArray={authorFilterArray}
             genreFilterArray={genreFilterArray}
+            setYearSortValue={setYearSortValue}
+            yearSortValue={yearSortValue}
           />
         )}
         <S.CenterblockContent className="centerblock__content">
@@ -72,7 +91,7 @@ console.log(filteredTracks.length)
           {error ? <p>Не удалось загрузить данные</p> : null}
           {isLoading ? (
             <TrackListPlug />
-          ) :  filteredTracks.length > 0 ? (
+          ) : filteredTracks.length > 0 ? (
             <TrackList data={filteredTracks} />
           ) : (
             <p>Треки не найдены</p>

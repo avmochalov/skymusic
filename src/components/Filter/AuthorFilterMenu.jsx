@@ -58,7 +58,7 @@ function AuthorFilterMenu({
                 'filter__menu_item' +
                 `${
                   authorFilterArray.includes(author) &&
-                  ' filter__button_clicked'
+                  'filter__button_clicked'
                 }`
               }
               onClick={(e) => {
