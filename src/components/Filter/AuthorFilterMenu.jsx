@@ -1,7 +1,32 @@
 // import { tracks } from '../../data';
+import { useState } from 'react';
 import * as S from './FilterStyles';
+import { useEffect } from 'react';
 
-function AuthorFilterMenu({ toggleVisibility, whatVisible, tracks }) {
+function AuthorFilterMenu({
+  toggleVisibility,
+  whatVisible,
+  tracks,
+  setAuthorFilterArray,
+  authorFilterArray,
+}) {
+  const [authorArray, setAuthorArray] = useState(null);
+  useEffect(() => {
+    const uniqueAuthors = new Set(tracks.map((track) => track.author));
+    setAuthorArray(Array.from(uniqueAuthors));
+  }, []);
+  console.log(authorArray);
+  // console.log(authorFilterArray);
+  const filterToggle = (author) => {
+    if (authorFilterArray.includes(author)) {
+      setAuthorFilterArray(
+        [...authorFilterArray].filter((el) => el !== author),
+      );
+    } else {
+      setAuthorFilterArray([...authorFilterArray, author]);
+    }
+  };
+
   return (
     <>
       <S.FilterButton
@@ -19,11 +44,29 @@ function AuthorFilterMenu({ toggleVisibility, whatVisible, tracks }) {
       >
         исполнителю
       </S.FilterButton>
+      {authorFilterArray.length > 0 && (
+        <div className="filter_point">
+          <p className="filter_point__text">{authorFilterArray.length}</p>{' '}
+        </div>
+      )}
       {whatVisible === 'author' && (
         <S.FilterMenuLeft className="filter__menu filter__menu_left">
-          {tracks.map((track) => (
-            <S.FilterMenuItem key={track.id} className="filter__menu_item">
-              {track.author}
+          {authorArray.map((author, index) => (
+            <S.FilterMenuItem
+              key={index}
+              className={
+                'filter__menu_item' +
+                `${
+                  authorFilterArray.includes(author) &&
+                  'filter__button_clicked'
+                }`
+              }
+              onClick={(e) => {
+                e.stopPropagation();
+                filterToggle(author);
+              }}
+            >
+              {author}
             </S.FilterMenuItem>
           ))}
         </S.FilterMenuLeft>

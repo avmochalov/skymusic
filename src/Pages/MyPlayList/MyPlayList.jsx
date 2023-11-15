@@ -9,15 +9,17 @@ import * as S from './MyPlayListStyles';
 import { useDispatch} from 'react-redux';
 import { setCurrentPage } from '../../store/actions/creators/skymusic';
 import { useGetFavoritesTracksQuery } from '../../services/skymusic';
+import { useState } from 'react';
 
 function MyPlayList() {
   const { data, error, isLoading } = useGetFavoritesTracksQuery();
   const dispatch = useDispatch();
+  const [searchValue, setSearchValue] = useState('');
   dispatch(setCurrentPage('myTracks'));
   return (
     <>
       <S.MainCenterblock className="main__centerblock centerblock">
-        <Search />
+        <Search setSearchValue={setSearchValue}/>
         <S.CenterblockH2 className="centerblock__h2">Мои треки</S.CenterblockH2>
         <S.CenterblockContent className="centerblock__content">
           <TrackListHeader />
@@ -26,7 +28,7 @@ function MyPlayList() {
           ) : error ? (
             <p>{error.data.detail}</p>
           ) : (
-            <TrackList data={data} />
+            <TrackList data={data} searchValue={searchValue}/>
           )}
         </S.CenterblockContent>
       </S.MainCenterblock>

@@ -96,7 +96,55 @@ export const GlobalStyle = createGlobalStyle`
     stroke: #ffffff;
     cursor: pointer;
   }
-  
+  .filter_point{
+    background-color: #ad61ff;
+    width: 26px;
+    height: 26px;
+    border-radius: 100px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: -10px;
+    left: 220px;
+    &__text {
+      font-size: 13px;
+    }
+  }
+  .filter_point_genre{
+    background-color: #ad61ff;
+    width: 26px;
+    height: 26px;
+    border-radius: 100px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: -10px;
+    left: 320px;
+    &__text {
+      font-size: 13px;
+    }
+  }
+
+  .filter_point_year{
+    background-color: #ad61ff;
+    width: 26px;
+    height: 26px;
+    border-radius: 100px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: -10px;
+    left: 472px;
+    &__text {
+      font-size: 13px;
+    }
+  }
   ._btn-icon:active .track-play__like-svg,
   ._btn-icon:active .track-play__dislike-svg {
     fill: #696969;
@@ -106,14 +154,14 @@ export const GlobalStyle = createGlobalStyle`
   
   // =================== main ====================//
   
-  // .filter {
-  //   &__button {
-  //     &_clicked {
-  //       border-color: #d9b6ff;
-  //       color: #d9b6ff;
-  //     }
-  //   }
-  // }
+   .filter {
+     &__button {
+     &_clicked {
+       border-color: #d9b6ff;
+       color: #d9b6ff;
+     }
+   }
+ }
   
   
 `;

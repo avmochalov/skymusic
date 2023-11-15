@@ -1,5 +1,5 @@
 import * as S from'./SearchStyle'
-function Search() {
+function Search({setSearchValue}) {
   return (
     <S.CenterblockSearch className="centerblock__search search">
       <S.SearchSvg className="search__svg">
@@ -10,6 +10,7 @@ function Search() {
         type="search"
         placeholder="Поиск"
         name="search"
+        onChange={(event) => {setSearchValue(event.target.value)}}
       ></S.SearchText>
     </S.CenterblockSearch>
   );

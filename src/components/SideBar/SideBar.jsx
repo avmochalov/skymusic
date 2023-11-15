@@ -5,18 +5,18 @@ function SideBar() {
     <S.SidebarBlock className="sidebar__block">
       <S.SidebarList className="sidebar__list">
         <S.SidebarItem className="sidebar__item">
-          <NavLink to={`/collections/1`}>
+          <NavLink to={`/category/1`}>
             <S.SidebarLink className="sidebar__link" href="#">
               <S.SidebarImg
                 className="sidebar__img"
-                src="img/playlist01.png"
+                src="img/playlist03.png"
                 alt="day's playlist"
               ></S.SidebarImg>
             </S.SidebarLink>
           </NavLink>
         </S.SidebarItem>
         <S.SidebarItem className="sidebar__item">
-          <NavLink to={`/collections/2`}>
+          <NavLink to={`/category/2`}>
             <S.SidebarLink className="sidebar__link" href="#">
               <S.SidebarImg
                 className="sidebar__img"
@@ -27,11 +27,11 @@ function SideBar() {
           </NavLink>
         </S.SidebarItem>
         <S.SidebarItem className="sidebar__item">
-          <NavLink to={`/collections/3`}>
+          <NavLink to={`/category/3`}>
             <S.SidebarLink className="sidebar__link" href="#">
               <S.SidebarImg
                 className="sidebar__img"
-                src="img/playlist03.png"
+                src="img/playlist01.png"
                 alt="day's playlist"
               ></S.SidebarImg>
             </S.SidebarLink>
