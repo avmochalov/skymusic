@@ -19,36 +19,37 @@ function Home() {
   const [searchValue, setSearchValue] = useState('');
   const [authorFilterArray, setAuthorFilterArray] = useState([]);
   const [genreFilterArray, setGenreFilterArray] = useState([]);
-  console.log(authorFilterArray)
-  console.log(genreFilterArray)
   dispatch(setCurrentPage('home'));
   const [filteredTracks, setFilteredTracks] = useState([]);
   useEffect(() => {
-    setFilteredTracks(data);
-  }, []);
+    isLoading
+      ? null
+      : setFilteredTracks(
+          data.filter((track) => {
+            return track.name.toLowerCase().includes(searchValue.toLowerCase());
+          }),
+        );
+  }, [isLoading, searchValue]);
 
-  useEffect(() => {
-    console.log('Я работаю');
-    setFilteredTracks(
-      data.filter((track) => {
-        return track.name.toLowerCase().includes(searchValue.toLowerCase());
-      }),
-    );
-  }, [searchValue, isLoading]);
-
-  useEffect(() => {
-
-  }, [authorFilterArray]);
+  console.log(data);
   return (
     <>
       <S.MainCenterblock className="main__centerblock centerblock">
         <Search setSearchValue={setSearchValue} />
         <S.CenterblockH2 className="centerblock__h2">Треки</S.CenterblockH2>
-        {isLoading ? null : <Filter data={data} setAuthorFilterArray={setAuthorFilterArray} setGenreFilterArray={setGenreFilterArray} authorFilterArray={authorFilterArray} genreFilterArray={genreFilterArray} />}
+        {isLoading ? null : (
+          <Filter
+            data={data}
+            setAuthorFilterArray={setAuthorFilterArray}
+            setGenreFilterArray={setGenreFilterArray}
+            authorFilterArray={authorFilterArray}
+            genreFilterArray={genreFilterArray}
+          />
+        )}
         <S.CenterblockContent className="centerblock__content">
           <TrackListHeader />
           {error ? <p>Не удалось загрузить данные</p> : null}
-          {isLoading ? <TrackListPlug /> : <TrackList data={filteredTracks}/>}
+          {isLoading ? <TrackListPlug /> : <TrackList data={filteredTracks} />}
         </S.CenterblockContent>
       </S.MainCenterblock>
       <S.MainSidebar className="main__sidebar sidebar">
